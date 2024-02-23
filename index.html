@@ -1,0 +1,128 @@
+<!--
+ *    __  __                  __            _____ __            ___     
+ *    \ \/ /___ _____  ____ _/ /______     / ___// /___  ______/ (_)___ 
+ *     \  / __ `/ __ \/ __ `/ //_/ __ \    \__ \/ __/ / / / __  / / __ \
+ *     / / /_/ / / / / /_/ / ,< / /_/ /   ___/ / /_/ /_/ / /_/ / / /_/ /
+ *    /_/\__,_/_/ /_/\__, /_/|_|\____/   /____/\__/\__,_/\__,_/_/\____/ 
+ *                  /____/                                              
+-->
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" id="yk" color-scheme="dark" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangko Studio</title>
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="/src/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  </head>
+  <body>
+    <header class="navbar navbar-expand-sm navbar-dark fixed-top">
+      <div class="container-fluid">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item yk-ud yk-t0">
+              <a class="nav-link" href="/index.html">
+                <span class="yk-a1">YK</span>
+                <span class="yk-a2">Yangko Studio</span>
+              </a>
+            </li>
+            <li class="nav-item yk-ud yk-t1">
+              <a class="nav-link" href="/index.html">主页</a>
+            </li>
+            <li class="nav-item yk-ud yk-t2">
+              <a class="nav-link" href="#">新闻</a>
+            </li>
+            <li class="nav-item yk-ud yk-t3">
+              <a class="nav-link" href="#">文件</a>
+            </li>
+            <li class="nav-item yk-ud yk-t4">
+              <a class="nav-link" href="#">信息</a>
+            </li>
+          </ul>
+          <button class="btn btn-outline-primary bi bi-search" type="button"> 搜索</button>
+          <div class="dropdown">
+            <button type="button" class="btn btn-outline-success bi bi-grid-fill ms-2" data-bs-toggle="dropdown"> 主题</button>
+            <div class="dropdown-menu">
+              <li>
+                <a class="btn bi bi-circle-half ms-2" type="button" onclick="">自动</a>
+              </li>
+              <li>
+                <a class="btn bi bi-moon-fill ms-2" type="button" onclick="change_theme('dark')">深色</a>
+              </li>
+              <li>
+                <a class="btn bi bi-sun-fill ms-2" type="button" onclick="change_theme('light')">浅色</a>
+              </li>
+            </div>
+          </div>
+          <button class="btn btn-outline-danger bi bi-person-circle ms-2" type="button"> 账户</button>
+      </div>
+    </header>
+    <main>
+      <br>
+      <br>
+      <div class="row m-3">
+        <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/src/assets/item-1.jpg">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/src/assets/item-1.jpg">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/src/assets/item-1.jpg">
+              <div class="carousel-caption">
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row m-3">
+        <div class="col-sm-3 px-0 text-white">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">✨ 新春快乐</a>
+            <a href="#" class="list-group-item list-group-item-action">⚙ Ver. 2.1</a>
+            <a href="#" class="list-group-item list-group-item-action">🧾 Yangko Plus</a>
+          </div>
+          <div class="list-group mt-3">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+            <a href="#" class="list-group-item list-group-item-action">第二项</a>
+            <a href="#" class="list-group-item list-group-item-action">第三项</a>
+          </div>
+        </div>
+      <div class="col px-3 text-white">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+            <a href="#" class="list-group-item list-group-item-action">第二项</a>
+          </div>
+        </div>
+        <div class="col-sm-3 px-0 text-white">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="navbar navbar-expand-sm navbar-dark fixed-bottom">
+    </footer>
+    <script type="text/javascript" src="/src/scripts/script.js"></script>
+  </body>
+</html>

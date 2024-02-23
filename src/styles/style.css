@@ -1,0 +1,100 @@
+ /*
+  *             __        __                    
+  *       _____/ /___  __/ /__   _______________
+  *      / ___/ __/ / / / / _ \ / ___/ ___/ ___/
+  *     (__  ) /_/ /_/ / /  __// /__(__  |__  ) 
+  *    /____/\__/\__, /_/\___(_)___/____/____/  
+  *             /____/                          
+  */
+  header{white-space: nowrap;display: flex;user-select: none;}
+  main{background-color: #1E1C1A;}
+
+  /*Theme-Dark*/
+  [color-scheme="dark"]{background-color: #1E1C1A;}
+  [color-scheme="dark"] header{background-color: #1E1C1A;border-bottom: 2px solid #FFFAF0;}
+  [color-scheme="dark"] footer{background-color: #1E1C1A;border-top: 2px solid #FFFAF0;}
+
+  /*Theme-Light*/
+  [color-scheme="light"]{background-color: #FFFAF0;}
+  [color-scheme="light"] header{background-color: #FFFAF0;border-bottom: 2px solid #1E1C1A;}
+  [color-scheme="light"] a{color: #1E1C1A;}
+
+ #demo{
+  background-color: #212529;
+  border-radius: 0.375rem;
+  border: 2px soild #fff;
+ }
+  .yk-footer{
+    background-color: #111;
+    background: linear-gradient(to right,#222,black);
+  }
+  .carousel-item{
+    text-align: center;
+  }
+  .carousel-ite img{
+    display: inline-block;
+  }
+  .yk-ud a {
+    position: relative;
+    line-height: 1.5;
+    transition: 0.15s all linear;
+    cursor: pointer;
+  }
+  .yk-ud a::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    border-bottom: 3px solid;
+    transition: 0.15s all linear;
+  }
+  .yk-ud a:hover::before {
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .yk-a1{
+    border-radius: 3px;
+    padding: 4px;
+    background-color: peru;
+    color: white;
+  }
+  .yk-a2{
+    font-weight: bold;
+    padding-left: 5px;
+    color: black;
+    background: linear-gradient(to right,brown,orangered,forestgreen,steelblue,purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .yk-t0 a:hover{color: white;}
+  .yk-t1 a:hover{color: brown;}
+  .yk-t2 a:hover{color: springgreen;}
+  .yk-t3 a:hover{color: steelblue;}
+  .yk-t4 a:hover{color: orangered;}
+  .yk-t5 a:hover{color: black;}
+  ::-webkit-scrollbar{width:7px;height: 7px;background-color:#fff;display: none;}
+  ::-webkit-scrollbar-track{background-color:#fff;}
+  ::-webkit-scrollbar-thumb{background-color:#000000;}
+  .yk-bx{left: 50%;}
+  input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    position: relative;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background: url("../assets/svg/x-lg.svg") no-repeat center;
+    background-size: 100% 100%;
+  }
+  input[type=search]::-ms-clear {
+    appearance: none;
+    position: relative;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background: url("../assets/svg/x-lg.svg") no-repeat center;
+    background-size: 100% 100%;
+  }
