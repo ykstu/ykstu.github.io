@@ -1,22 +1,17 @@
- /*
-  *             __        __                    
-  *       _____/ /___  __/ /__   _______________
-  *      / ___/ __/ / / / / _ \ / ___/ ___/ ___/
-  *     (__  ) /_/ /_/ / /  __// /__(__  |__  ) 
-  *    /____/\__/\__, /_/\___(_)___/____/____/  
-  *             /____/                          
-  */
-  header{white-space: nowrap;display: flex;user-select: none;}
+  nav{white-space: nowrap;display: flex;user-select: none;
+    background-color: #1E1C1A;
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, .3);
+  }
   main{background-color: #1E1C1A;}
 
   /*Theme-Dark*/
   [color-scheme="dark"]{background-color: #1E1C1A;}
-  [color-scheme="dark"] header{background-color: #1E1C1A;border-bottom: 2px solid #FFFAF0;}
-  [color-scheme="dark"] footer{background-color: #1E1C1A;border-top: 2px solid #FFFAF0;}
+  [color-scheme="dark"] header{background-color: #1E1C1A;border-bottom: 1px solid #FFFAF0;}
+  [color-scheme="dark"] footer{background-color: #1E1C1A;border-top: 1px solid #FFFAF0;}
 
   /*Theme-Light*/
   [color-scheme="light"]{background-color: #FFFAF0;}
-  [color-scheme="light"] header{background-color: #FFFAF0;border-bottom: 2px solid #1E1C1A;}
+  [color-scheme="light"] header{background-color: #FFFAF0;border-bottom: 1px solid #1E1C1A;}
   [color-scheme="light"] a{color: #1E1C1A;}
 
  #demo{
@@ -57,7 +52,7 @@
   }
   .yk-a1{
     border-radius: 3px;
-    padding: 4px;
+    padding: 2px;
     background-color: peru;
     color: white;
   }
