@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/app/style.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const url = new URL(window.location.href);
+      if(url.searchParams.get('password')=='666'){location.href='index.html'}
+    </script>
+</head>
+  <body>
+    <div class="main">
+        <h5>工具</h5>
+    <hr>
+        <input type="password" name="value">
+        <a href="/app/login.html"><button>退出登录</button></a>
+  </body>
+</html>

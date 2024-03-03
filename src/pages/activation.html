@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangko Studio</title>
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="/src/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <style>
+        *{
+            font-family: 宋体,monospace;
+            user-select: none;
+            white-space:nowrap;
+        }
+        input,button{
+            border: 1px solid;
+        }
+        input{
+            outline: none;
+            width: 100%;
+        }
+        table{
+            width: 100%;
+        }
+        td{
+            text-align: center;
+        }
+        input:focus{
+            border-color: dodgerblue;
+        }
+        button{
+            float: right;
+            width: 8rem;
+        }
+        .main{
+            margin: 10%;
+            padding: 3rem;
+            background-color: rgb(54, 54, 54);
+        }
+        form input{
+            text-transform: uppercase;
+        }
+        button:hover{
+            border-color: dodgerblue;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+  <body>
+    <div class="main">
+        <h5>Yangko Plus 激活</h5>
+    <hr>
+    <form action=""> 
+        <div>
+            <table><tr>
+                <td>账号</td>
+                <td><input type="text" name="username" maxlength="29" required readonly value=""></td>
+            </tr></table>
+            <table><tr>
+                <td>密钥</td>
+                <td><input type="text" name="key" maxlength="29" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" required pattern="([A-Z0-9]{5})-([A-Z0-9]{5})-([A-Z0-9]{5})-([A-Z0-9]{5})-([A-Z0-9]{5})"></td>
+            </tr></table>
+        </div>  
+        <hr>
+        <button>激活</button>
+    </form>
+    </div>
+    <script type="text/javascript" src="/src/scripts/script.js"></script>
+  </body>
+</html>
