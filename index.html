@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans" id="yk" color-scheme="dark" data-bs-theme="dark">
+<html lang="zh-cmn-Hans" id="yk" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -12,13 +12,12 @@
     <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
   </head>
   <body>
-<!------------导航------------>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top yk-header">
       <div class="container-fluid">
           <ul class="navbar-nav me-auto">
             <li class="nav-item yk-t0">
               <a class="nav-link">
-                <span class="yk-a1">YK</span>
+                <span class="yk-a1 border rounded">YK</span>
                 <span class="yk-a2">Yangko Studio</span>
               </a>
             </li>
@@ -57,19 +56,11 @@
                 <i class="bi bi-info-circle"></i> 信息
               </a>
             </li>
-            <li class="nav-item yk-ud yk-t0">
-              <a class="nav-link" href="/src/pages/activation.html">
-                <i class="bi bi-box-seam"></i> Yangko Plus
-              </a>
-            </li>
           </ul>
       </div>
     </nav>
-
-
-<!------------正文------------>
     <main>
-      <div class="row m-3">
+      <div class="row m-3 border rounded">
         <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -101,45 +92,29 @@
           </button>
         </div>
       </div>
-      <div class="row m-3">
-        <div class="col px-0 me-3 text-white">
+      <div class="m-3">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">✨ 新春快乐</a>
-            <a href="#" class="list-group-item list-group-item-action">✨ 新春快乐</a>
-            <a href="#" class="list-group-item list-group-item-action">✨ 新春快乐</a>
-          </div>
-        </div>
-        <div class="col px-0 me-3 text-white">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">✨ 新春快乐</a>
-            <a href="#" class="list-group-item list-group-item-action">⚙ Ver. 2.1</a>
-            <a href="#" class="list-group-item list-group-item-action">🧾 Yangko Plus</a>
-          </div>
-        </div>
-        <div class="col px-0 text-white">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-              <form action="">
-                <input type="text" class="form-control" placeholder="" pattern="">
-                <button class="btn btn-outline-success bi bi-key"></button>
+            <a href="/视频-伴奏-夜空中最亮的星_.zip.001" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第一部分】</a>
+            <a href="/视频-伴奏-夜空中最亮的星_.zip.002" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第二部分】</a>
+            <a href="/视频-伴奏-夜空中最亮的星_.zip.003" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第三部分】</a>
+            <a class="list-group-item list-group-item-action">
+              🎫 腾讯视频、爱奇艺等会员视频免费观看
+              <form action="https://playm3u8.cn/jiexi.php">
+                <div class="form-floating mb-3">
+                  <input type="text" required name="url" class="form-control" id="floatingInput" placeholder="视频链接">
+                  <label for="floatingInput">输入视频链接...</label>
+                </div>
+                注意:将要跳转至其他网站，可能会有广告。
+                <br>
+                <input type="reset" class="btn btn-danger" value="清空">
+                <button class="btn btn-success">提交</button>
               </form>
             </a>
-            <a href="#" class="list-group-item list-group-item-action">⚙ Ver. 2.1</a>
-            <a href="#" class="list-group-item list-group-item-action">🧾 Yangko Plus</a>
-          </div>
-        </div>
-      </div>
-      <div class="row m-3">
-        <div class="col">
-            <a href="#" class="list-group-item list-group-item-action">激活 Yangko Plus</a>
-            
           </div>
       </div>
     </main>
-<!------------页尾------------>
     <footer class="navbar navbar-expand-sm navbar-dark fixed-bottom">
     </footer>
-<!------------脚本------------>
     <script type="text/javascript" src="/src/scripts/script.js"></script>
   </body>
 </html>

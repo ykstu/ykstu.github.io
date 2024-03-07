@@ -1,21 +1,22 @@
  
-  
-
+  *{
+    font-family: Consolas;
+  }
+  body{
+    padding-top: 40px;
+  }
   nav{
+    user-select: none;
     background-color: #1E1C1A;
     white-space:nowrap;
     box-shadow: 0 0 30px 10px rgba(0, 0, 0, .3);
   }
   main{background-color: #1E1C1A;}
   /*Theme-Dark*/
-  [color-scheme="dark"]{background-color: #1E1C1A;}
-  [color-scheme="dark"] header{background-color: #1E1C1A;border-bottom: 1px solid #FFFAF0;}
-  [color-scheme="dark"] footer{background-color: #1E1C1A;border-top: 1px solid #FFFAF0;}
+  html{background-color: #1E1C1A;}
+  header{background-color: #1E1C1A;border-bottom: 1px solid #FFFAF0;}
+  footer{background-color: #1E1C1A;border-top: 1px solid #FFFAF0;}
 
-  /*Theme-Light*/
-  [color-scheme="light"]{background-color: #FFFAF0;}
-  [color-scheme="light"] header{background-color: #FFFAF0;border-bottom: 1px solid #1E1C1A;}
-  [color-scheme="light"] a{color: #1E1C1A;}
 
  #demo{
   background-color: #212529;
@@ -54,14 +55,11 @@
     left: 0;
   }
   .yk-a1{
-    border-radius: 3px;
-    padding: 2px;
-    background-color: peru;
-    color: white;
+    padding: 4px;
+    color: #ffffff8c;
   }
   .yk-a2{
-    font-weight: bold;
-    padding-left: 5px;
+    padding-left: 4px;
     color: black;
     background: linear-gradient(to right,brown,orangered,forestgreen,steelblue,purple);
     -webkit-background-clip: text;
