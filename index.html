@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans" id="yk" data-bs-theme="dark">
+<html lang="zh-cmn-Hans"  data-bs-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -7,55 +7,22 @@
     <title>Yangko Studio</title>
     <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico">
     <link rel="stylesheet" type="text/css" media="all" href="/src/styles/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top yk-header">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top border-bottom yk-header">
       <div class="container-fluid">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item yk-t0">
-              <a class="nav-link">
-                <span class="yk-a1 border rounded">YK</span>
-                <span class="yk-a2">Yangko Studio</span>
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t1">
-              <a class="nav-link" href="/index.html">
-                <i class="bi bi-house"></i> 主页
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t2">
-              <a class="nav-link" href="#">
-                <i class="bi bi-newspaper"></i> 新闻
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t3">
-              <a class="nav-link" href="#">
-                <i class="bi bi-folder2"></i> 文件
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t4">
-              <a class="nav-link" href="#">
-                <i class="bi bi-search"></i> 搜索
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t5">
-              <a class="nav-link" href="#">
-                <i class="bi bi-person"></i> 用户
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t6">
-              <a class="nav-link" href="#">
-                <i class="bi bi-gear"></i> 设置
-              </a>
-            </li>
-            <li class="nav-item yk-ud yk-t7">
-              <a class="nav-link" href="#">
-                <i class="bi bi-info-circle"></i> 信息
-              </a>
-            </li>
+            <li class="nav-item"><a class="nav-link"><span class="yk-a1 border rounded">YK</span><span class="yk-a2">Yangko Studio</span></a></li>
+            <li class="nav-item yk-ud yk-t1"><a class="nav-link" href="/index.html"><i class="bi bi-house"></i> 主页</a></li>
+            <li class="nav-item yk-ud yk-t2"><a class="nav-link" href="#"><i class="bi bi-newspaper"></i> 新闻</a></li>
+            <li class="nav-item yk-ud yk-t3"><a class="nav-link" href="#"><i class="bi bi-folder2"></i> 文件</a></li>
+            <li class="nav-item yk-ud yk-t4"><a class="nav-link" href="#"><i class="bi bi-search"></i> 搜索</a></li>
+            <li class="nav-item yk-ud yk-t5"><a class="nav-link" href="#"><i class="bi bi-person"></i> 用户</a></li>
+            <li class="nav-item yk-ud yk-t6"><a class="nav-link" href="#"><i class="bi bi-gear"></i> 设置</a></li>
+            <li class="nav-item yk-ud yk-t7"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> 信息</a></li>
           </ul>
       </div>
     </nav>
@@ -94,9 +61,15 @@
       </div>
       <div class="m-3">
           <div class="list-group">
-            <a href="/视频-伴奏-夜空中最亮的星_.zip.001" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第一部分】</a>
-            <a href="/视频-伴奏-夜空中最亮的星_.zip.002" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第二部分】</a>
-            <a href="/视频-伴奏-夜空中最亮的星_.zip.003" class="list-group-item list-group-item-action">🎵 夜空中最亮的星【下载】【第三部分】</a>
+            <a class="list-group-item list-group-item-action">
+              <form action="">
+                <div class="form-floating mb-3">
+                  <input type="text" required name="key" class="form-control" id="floatingInput" placeholder="Enter your key">
+                  <label for="floatingInput">Enter your key</label>
+                </div>
+                <button class="btn btn-outline-success bi bi-key">提交</button>
+              </form>
+            </a>
             <a class="list-group-item list-group-item-action">
               🎫 腾讯视频、爱奇艺等会员视频免费观看
               <form action="https://playm3u8.cn/jiexi.php">
@@ -113,7 +86,7 @@
           </div>
       </div>
     </main>
-    <footer class="navbar navbar-expand-sm navbar-dark fixed-bottom">
+    <footer class="navbar navbar-expand-sm navbar-dark">
     </footer>
     <script type="text/javascript" src="/src/scripts/script.js"></script>
   </body>
