@@ -7,7 +7,7 @@ function date() {
 	var minutes = parseInt(difftime % 3600 / 60);
 	var seconds = parseInt(difftime % 60);
 	var percent = 100 - difftime / 86400;
-	percent4 = Math.round(percent * 100) / 100 + '%';
+	percent4 = Math.round(percent * 10000) / 10000 + '%';
 	document.getElementById('date')
 		.innerHTML = "成都中考：" + days + " 日 " + hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
 	document.getElementById('pn')
