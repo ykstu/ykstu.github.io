@@ -1,55 +1,257 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans"  data-bs-theme="dark">
+<html lang="zh-cmn-Hans" id="html" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="all" href="/src/styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        .yk-a2{
-    padding-left: 4px;
-    color: black;
-    background: linear-gradient(to right,forestgreen,steelblue);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-        .col-2 a{
-            text-align: center;
-        }
-        .list-group a{
-            height: 100%;
-        }
-        .list-group div{
-            position: absolute;
-            height: 100%;
-            width: 100%;
-        }
-        .aa{
-            
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" media="all" href="/app/cms/style.css">
 </head>
   <body>
-    <main>
-      <div class="row">
-        <div class="col-2 m-0 p-0 border-end">
-            <div class="list-group list-group-flush aa">
-                <a href="#1" class="list-group-item list-group-item-action bi bi-house"> 主页</a>
-                <a href="#2" class="list-group-item list-group-item-action">第二项</a>
-                <a href="#" class="list-group-item list-group-item-action">第三项</a>
+    <div class="row">
+      <ul class="list-group list-group-flush p-0 col-2 border-end start overflow-hidden">
+        <a href="#item-1" class="list-group-item list-group-item-action bi bi-house"> 主页</a>
+        <a href="#item-2" class="list-group-item list-group-item-action bi bi-grid"> 工具</a>
+        <a href="#item-3" class="list-group-item list-group-item-action bi bi-info-circle"> 信息</a>
+        <a href="#item-4" class="list-group-item list-group-item-action bi bi-gear"> 设置</a>
+        <a href="#item-5" class="list-group-item list-group-item-action bi bi-tools border-bottom"> 开发</a>
+      </ul>
+      <ul class="col overflow-hidden p-0 m-0" data-bs-spy="scroll">
+<!----------------------------------------------------------------------------------->
+        <div class="box" id="item-1">
+          <h3>主页</h3>
+          <div class="card">
+            <div class="card-body">
+              9.21班专用
+              <a href="https://www.scmeishu.cn/thread-3-116-3.html">📢📢📢📢📢📢📢📢</a>
             </div>
-        </div>
-        <div class="col p-0">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item" id="1">1项</div>
-                <div class="list-group-item" id="2">2项</div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+              <a id="date"></a>
+              <br>
+              <a id="pn"></a>
+              <div class="progress">
+                <div id="percent" class="progress-bar bg-success"></div>
+              </div>
             </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+              <a id="time"></a>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+              <table class="table table-dark table-hover">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>星期一</th>
+                    <th>星期二</th>
+                    <th>星期三</th>
+                    <th>星期四</th>
+                    <th>星期五</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>7:40 - 8:20</td>
+                    <td colspan="5">晨练</td>
+                  </tr>
+                  <tr>
+                    <td>8:20 - 9:00</td>
+                    <td>班会</td>
+                    <td>语文</td>
+                    <td>英语</td>
+                    <td>英语</td>
+                    <td>语文</td>
+                  </tr>
+                  <tr>
+                    <td>9:10 - 9:50</td>
+                    <td>数学</td>
+                    <td>历史</td>
+                    <td>英语</td>
+                    <td>数学</td>
+                    <td>化学</td>
+                  </tr>
+                  <tr>
+                    <td>10:00 - 10:40</td>
+                    <td>语文</td>
+                    <td>体育</td>
+                    <td>语文</td>
+                    <td>数学</td>
+                    <td>语文</td>
+                  </tr>
+                  <tr>
+                    <td>10:50 - 11:30</td>
+                    <td>语文</td>
+                    <td>数学</td>
+                    <td>物理</td>
+                    <td>体育</td>
+                    <td>英语</td>
+                  </tr>
+                  <tr>
+                    <td>11:40 - 12:20</td>
+                    <td>体育</td>
+                    <td>数学</td>
+                    <td>数学</td>
+                    <td>物理</td>
+                    <td>英语</td>
+                  </tr>
+                  <tr>
+                    <td>12:20 - 14:00</td>
+                    <td colspan="5">午餐</td>
+                  </tr>
+                  <tr>
+                    <td>14:00 - 14:40</td>
+                    <td>英语</td>
+                    <td>化学</td>
+                    <td>化学</td>
+                    <td>化学</td>
+                    <td>数学</td>
+                  </tr>
+                  <tr>
+                    <td>14:50 - 15:30</td>
+                    <td>政治</td>
+                    <td>英语</td>
+                    <td>自习</td>
+                    <td>历史</td>
+                    <td>政治</td>
+                  </tr>
+                  <tr>
+                    <td>15:40 - 16:20</td>
+                    <td>物理</td>
+                    <td>物理</td>
+                    <td>自习</td>
+                    <td>语文</td>
+                    <td>体育</td>
+                  </tr>
+                  <tr>
+                    <td>16:30 - 17:10</td>
+                    <td id="ex1">化学</td>
+                    <td>英语</td>
+                    <td>数学</td>
+                    <td>语文</td>
+                    <td>物理</td>
+                  </tr>
+                  <tr>
+                    <td>17:20 - 18:00</td>
+                    <td id="ex2">化学</td>
+                    <td>英语</td>
+                    <td>数学</td>
+                    <td>语文</td>
+                    <td>物理</td>
+                  </tr>
+                  <tr>
+                    <td>18:00 - 18:30</td>
+                    <td colspan="5">晚餐</td>
+                  </tr>
+                  <tr>
+                    <td>18:30 - 20:00</td>
+                    <td colspan="5">自习</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
-    <script type="text/javascript" src="/src/scripts/script.js"></script>
+<!----------------------------------------------------------------------------------->
+        <div class="box" id="item-2">
+          <h3>工具</h3>
+          <video controls width="100%" height="100%">   
+            <source src="" type="video/mp4"/>
+          </video>
+          🎫 腾讯视频、爱奇艺等会员视频免费观看
+          <form action="https://playm3u8.cn/jiexi.php">
+            <div class="form-floating mb-3">
+              <input type="text" required name="url" class="form-control" id="floatingInput" placeholder="视频链接">
+              <label for="floatingInput">输入视频链接...</label>
+            </div>
+            注意:将要跳转至其他网站，可能会有广告。
+            <br>
+            <input type="reset" class="btn btn-danger" value="清空">
+            <button class="btn btn-success">提交</button>
+          </form>
+        </div>
+<!----------------------------------------------------------------------------------->
+        <div class="box" id="item-3">
+          <h3>信息</h3><span>Power by</span>
+          <span class="yk-a1  border rounded">YK</span><span class="yk-a2">Yangko Studio</span>
+          <br>
+          <span id="sv">Local Version:</span>
+          <br>
+          <span>Latest Version:1.1</span>
+          <br>
+          <img src="/src/assets/favicon.ico" width="25px" height="25px"><span>Ahou XX</span>
+          <br>
+          <img src="/src/assets/win10.png" width="25px" height="25px"><span>Microsoft Windows 10 1809</span>
+          <br>
+          <img src="/src/assets/dotnet.ico" width="25px" height="25px"><span>.Net Framework 4.7.2</span>
+          <br>
+          <img src="/src/assets/msedgewebview2_IDR_MAINFRAME.ico" width="25px" height="25px"><span>Microsoft Edge WebView2 122.0.2365.66</span>
+          <hr>
+          SOFTWARE LICENSE AGREEMENT
+This Software License Agreement ("Agreement") is made and entered into as of 2024-03-10 ("Effective Date") by and between Yangko Studio, private-person, having its principal place of business at Jinniu District, Chengdu, China ("Licensor"), and user, private-person, having its principal place of business at Qingyang District, Chengdu, China ("Licensee").
+
+WHEREAS, Licensor owns certain software that it desires to license to Licensee;
+
+WHEREAS, Licensee desires to use such software under the terms and conditions set forth herein.
+
+NOW, THEREFORE, in consideration of the mutual promises contained herein and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
+
+1. Definition of Software:
+The term "Software" refers to the CMS, including any updates, modifications, or associated documentation provided by Licensor.
+
+2. Grant of License:
+Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee a limited to applications license to use the Software.
+
+3. Derivative Works:
+No modifications or derivative works are allowed.
+
+4. Commercial Use:
+Commercial use is not allowed.
+
+5. Attribution:
+No attribution is required.
+
+6. Intellectual Property Rights:
+All intellectual property rights in the Software shall remain the property of Licensor. The Licensee does not acquire any rights to the Software except for the limited use rights specified in this Agreement.
+
+7. Warranty and Liability:
+The Software is provided "as is" without warranty of any kind. Licensor shall not be liable for any damages arising out of or related to the use or inability to use the Software.
+
+8. Termination:
+This Agreement shall terminate automatically if Licensee breaches any of its terms and conditions. Upon termination, Licensee must cease all use of the Software and destroy all copies.
+
+9. Governing Law:
+This Agreement shall be governed by and construed in accordance with the laws of China.
+
+IN WITNESS WHEREOF, the parties have executed this Software License Agreement as of the Effective Date.
+
+Licensor: Yangko Studio
+
+Licensee: user
+        </div>
+<!----------------------------------------------------------------------------------->
+        <div class="box" id="item-4">
+          <h3>设置</h3>
+          <div class="btn-group">
+            <button type="button" onclick="theme('light')" class="btn btn-primary bi bi-sun">浅色</button>
+            <button type="button" onclick="theme('dark')" class="btn btn-primary bi bi-moon">深色</button>
+          </div>
+
+        </div>
+<!----------------------------------------------------------------------------------->
+        <div class="box" id="item-5">
+          <h3>开发</h3>
+          <div class="card border-danger">
+            <div class="card-body"><i class="bi bi-x-lg"></i>无法使用</div>
+          </div>
+        </div>
+<!----------------------------------------------------------------------------------->
+      </ul>
+       <script type="text/javascript" src="/app/cms/script.js"></script>
   </body>
 </html>
