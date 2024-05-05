@@ -1,93 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans"  data-bs-theme="dark">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yangko Studio</title>
-    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" media="all" href="/src/styles/style.css">
-    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top border-bottom yk-header">
-      <div class="container-fluid">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link"><span class="yk-a1 border rounded">YK</span><span class="yk-a2">Yangko Studio</span></a></li>
-            <li class="nav-item yk-ud yk-t1"><a class="nav-link" href="/index.html"><i class="bi bi-house"></i> 主页</a></li>
-            <li class="nav-item yk-ud yk-t2"><a class="nav-link" href="#"><i class="bi bi-newspaper"></i> 新闻</a></li>
-            <li class="nav-item yk-ud yk-t3"><a class="nav-link" href="#"><i class="bi bi-folder2"></i> 文件</a></li>
-            <li class="nav-item yk-ud yk-t4"><a class="nav-link" href="#"><i class="bi bi-search"></i> 搜索</a></li>
-            <li class="nav-item yk-ud yk-t5"><a class="nav-link" href="#"><i class="bi bi-person"></i> 用户</a></li>
-            <li class="nav-item yk-ud yk-t6"><a class="nav-link" href="#"><i class="bi bi-gear"></i> 设置</a></li>
-            <li class="nav-item yk-ud yk-t7"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> 信息</a></li>
-          </ul>
-      </div>
-    </nav>
-    <main>
-      <div class="row m-3 border rounded">
-        <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="/src/assets/item-1.jpg">
-              <div class="carousel-caption">
-              </div>
+<html lang="zh-cmn-Hans">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Push</title>
+        <link rel="stylesheet" href="src/style.css">
+        <link rel="icon" href="src/favicon.svg">
+    </head>
+    <body>
+        <div id="sys">
+            <div id="sys-menu">
+                <div id="sys-menu-logo">
+                    <span id="sys-menu-logo-icon">P</span>
+                    <span id="sys-menu-logo-name">Push</span>
+                </div>
+                <div id="sys-menu-list">
+                    <span id="sys-menu-list-0">System</span>
+                    <span id="sys-menu-list-1">应用</span>
+                    <span id="sys-menu-list-2">设置</span>
+                    <span id="sys-menu-list-3">帮助</span>
+                </div>
+                <div id="sys-menu-time">
+                </div>
             </div>
-            <div class="carousel-item">
-              <img src="/src/assets/item-1.jpg">
-              <div class="carousel-caption">
-              </div>
+            <div id="sys-desktop">
+                <div id="test">
+                    <a id="date"></a>
+                    <br>
+                    <a id="pn"></a>
+                    <div class="progress">
+                      <div id="percent"></div>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item">
-              <img src="/src/assets/item-1.jpg">
-              <div class="carousel-caption">
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
         </div>
-      </div>
-      <div class="m-3">
-          <div class="list-group">
-            <a class="list-group-item list-group-item-action">
-              <form action="">
-                <div class="form-floating mb-3">
-                  <input type="text" required name="key" class="form-control" id="floatingInput" placeholder="Enter your key">
-                  <label for="floatingInput">Enter your key</label>
-                </div>
-                <button class="btn btn-outline-success bi bi-key">提交</button>
-              </form>
-            </a>
-            <a class="list-group-item list-group-item-action">
-              🎫 腾讯视频、爱奇艺等会员视频免费观看
-              <form action="https://playm3u8.cn/jiexi.php">
-                <div class="form-floating mb-3">
-                  <input type="text" required name="url" class="form-control" id="floatingInput" placeholder="视频链接">
-                  <label for="floatingInput">输入视频链接...</label>
-                </div>
-                注意:将要跳转至其他网站，可能会有广告。
-                <br>
-                <input type="reset" class="btn btn-danger" value="清空">
-                <button class="btn btn-success">提交</button>
-              </form>
-            </a>
-          </div>
-      </div>
-    </main>
-    <footer class="navbar navbar-expand-sm navbar-dark">
-    </footer>
-    <script type="text/javascript" src="/src/scripts/script.js"></script>
-  </body>
+        <script src="src/script.js"></script>
+    </body>
 </html>

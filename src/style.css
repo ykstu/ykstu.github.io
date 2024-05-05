@@ -1,0 +1,99 @@
+*{
+    font-family: Consolas,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    user-select: none;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #222;
+    background-image: url("https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEiEk.img");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+#sys {
+    color: white;
+    & #sys-menu {
+        overflow:hidden;
+        padding: 0.8rem;
+        background-color: rgba(89, 89, 89, 0.25);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        color: rgb(128, 128, 128);
+        & #sys-menu-logo {
+            float: left;
+            display: table-cell;
+            vertical-align: center;
+            margin: 0 1rem 0 0;
+            & #sys-menu-logo-icon {
+                padding: 0 6px;
+                margin: 0 0.5rem 0 0;
+                font: bold large Consolas;
+                background-color: rgba(89, 89, 89, 0.25);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+                -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+                border-radius: 4px;
+                color: rgb(128, 128, 128);
+            }
+
+            & #sys-menu-logo-name {
+                font: large Consolas;
+                @supports (-webkit-background-clip: text) or (background-clip: text) {
+                    background: linear-gradient(to right, dodgerblue, springgreen);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+
+                }
+            }
+
+        }
+        & #sys-menu-time{
+            float: right;
+
+        }
+        & #sys-menu-list{
+            float: left;
+            & span{
+                &:hover{
+                    border-bottom: 1px solid white;
+                }
+            }
+        }
+    }
+    & #sys-desktop {
+
+    }
+}
+
+#test{
+    padding: 1rem;
+        background-color: rgba(89, 89, 89, 0.25);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        color: rgb(128, 128, 128);
+}
+.progress{
+    background-color: rgba(89, 89, 89, 0.25);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 25px;
+        box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0 6px 15px 0;
+        color: rgb(128, 128, 128);
+}
+#percent{
+    background-color: #222;
+    border-radius: 25px;
+    text-align: center;
+}
