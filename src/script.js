@@ -10,7 +10,7 @@ function time(){
 setInterval("time()","1000");
 function date() {
 	var old_date = new Date();
-	var new_date = new Date("2024-6-13 09:00:00");
+	var new_date = new Date("2024/6/13 09:00:00");
 	var difftime = (new_date - old_date) / 1000;
 	var days = parseInt(difftime / 86400);
 	var hours = parseInt(difftime / 3600) - 24 * days;
