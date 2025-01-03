@@ -50,16 +50,11 @@ for (let sapp = 1; sapp < napp + 1; sapp++) {
 document.getElementById('apps').appendChild(document.createElement('i'));
 
 
-const treeWalker = document.createTreeWalker(
-    document.body,
-    NodeFilter.SHOW_ELEMENT,
-    {
-        acceptNode: function (node) {
-            return node.tagName === 'DIV' && node.classList.contains('app') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-        }
-    },
-    false
-);
+const treeWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+    acceptNode: function (node) {
+        return node.tagName === 'DIV' && node.classList.contains('app') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    }
+}, false);
 
 const divsInCreationOrder = [];
 let div;
@@ -97,8 +92,7 @@ document.querySelectorAll('.app').forEach(app => {
         } else {
             autowin(`${position[0] + e.touches[0].clientX}px`, `${position[1] + e.touches[0].clientY}px`)
             Object.assign(app.style, {
-                left: `${position[0] + e.touches[0].clientX}px`,
-                top: `${position[1] + e.touches[0].clientY}px`
+                left: `${position[0] + e.touches[0].clientX}px`, top: `${position[1] + e.touches[0].clientY}px`
             });
         }
     });
@@ -108,10 +102,7 @@ document.querySelectorAll('.app').forEach(app => {
     app.querySelector('.max').addEventListener('click', () => {
         if (maxed) {
             Object.assign(app.style, {
-                width: oldposition[0],
-                height: oldposition[1],
-                top: oldposition[2],
-                left: oldposition[3]
+                width: oldposition[0], height: oldposition[1], top: oldposition[2], left: oldposition[3]
             });
             maxed = false
         } else {

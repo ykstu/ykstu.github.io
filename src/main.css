@@ -9,8 +9,6 @@
 }
 
 img {
-    -moz-user-drag: none;
-    -ms-user-drag: none;
     -webkit-user-drag: none;
 }
 
@@ -62,7 +60,6 @@ body {
     display: flex;
     line-height: 1;
     justify-content: space-between;
-
     & div {
         display: flex;
         align-items: center;
@@ -83,7 +80,6 @@ input, button {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     color: rgb(128, 128, 128);
-    border: 0;
     border: 1px solid #aaa;
     outline: none;
     background-color: rgba(10, 10, 10, 0.65);
@@ -128,9 +124,7 @@ input, button {
         text-align: center;
         display: block;
     }
-
 }
-
 
 #tab {
     height: 100%;
@@ -205,7 +199,6 @@ input, button {
         border-radius: 50%;
         width: 0.7lh;
         height: 0.7lh;
-        border-radius: 50%;
         cursor: pointer;
     }
 
@@ -266,13 +259,13 @@ iframe {
 
 @keyframes gradient {
     0% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
     50% {
         background-position: 100% 50%;
     }
     100% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
 }
 
@@ -319,10 +312,7 @@ svg {
 .dock {
     bottom: 0.2lh;
     position: fixed;
-
-    display: block;
     width: 100%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -376,5 +366,5 @@ a {
     color: rgb(128, 128, 128);
     background-color: rgba(10, 10, 10, 0.82);
     border-radius: 16px;
-    top: 1l;
+    top: 1lh;
 }
