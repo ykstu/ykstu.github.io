@@ -5,16 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d459a47-23d9-4ab0-b343-18a552a84e19" name="更改" comment="0.0.0">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/#/assets/macOS 15 Wallpaper Helios Dark.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/#/assets/macOS 15 Wallpaper Helios Light.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/#/assets/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/#/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/#/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/#/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/#/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/#/page/rec.html" beforeDir="false" afterPath="$PROJECT_DIR$/#/page/rec.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/rec.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/rec.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/03452a77f80d2323b432995beb42dfab43293747.jpg@1256w_708h_!web-article-pic.avif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/15.avif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/440102.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedac9faac90851d9625e49_07_terminal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedaca0b9e689e1d2a9e47b_08_system-preferences.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedaca1b9e6895ee8a9e47d_15_safari.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedaca4acad015c2de7b6a1_30_launchpad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedaca652334522a656efc3_37_finder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/5fedacabc8595ff5eeaf6e17_63_appstore.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/MdiAlphaACircle.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/UilSlidersVAlt.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/close.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/favicon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/max.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/min.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/#/main.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/example.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/rec.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +53,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -46,23 +64,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Administrator/Documents/GitHub/ykstu.github.io",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;JavaScript 调试.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Documents/GitHub/ykstu.github.io&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Yang\Desktop\Ahou\src\" />
@@ -100,7 +121,9 @@
       <workItem from="1735894877623" duration="49000" />
       <workItem from="1735894946440" duration="3017000" />
       <workItem from="1735898135025" duration="178000" />
-      <workItem from="1735898353086" duration="2424000" />
+      <workItem from="1735898353086" duration="2492000" />
+      <workItem from="1735963694706" duration="7011000" />
+      <workItem from="1735980148220" duration="4358000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <option name="closed" value="true" />
@@ -142,7 +165,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735898396916</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="0.0.0">
+      <option name="closed" value="true" />
+      <created>1735929616679</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735929616679</updated>
+    </task>
+    <task id="LOCAL-00007" summary="0.0.0">
+      <option name="closed" value="true" />
+      <created>1735929654044</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1735929654044</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
