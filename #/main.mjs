@@ -38,7 +38,7 @@
 
 
 
-let napp = 2
+let napp = 20
 let navDiv, newDiv
 for (let sapp = 1; sapp < napp + 1; sapp++) {
 
