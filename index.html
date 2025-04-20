@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahou">
+    <meta name="author" content="Yangko Studio">
+    <meta name="keywords" content="Ahou">
+    <title>Ahou</title>
+    <link rel="stylesheet" type="text/css" href="/src/style.css">
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" >
+</head>
+<body>
+    <h1>Ahou 28 Preview</h1>
+    <h1>Copyright © 2018-2025 Yangko Studio. All rights reserved.</h1>
+    <button id="theme-toggle" style="position:fixed;top:10px;right:10px;z-index:999;">切换主题</button>
+    <div class="wnd" style="left: 50px; top: 50px; width: 400px; height: 300px">
+        <div class="wnd-hdr">
+            <img src="/src/favicon.svg" alt="窗口图标">
+            <span>示例窗口</span>
+            <div class="wnd-ctrls">
+                <button class="wnd-ctrl min" title="最小化"></button>
+                <button class="wnd-ctrl max" title="最大化"></button>
+                <button class="wnd-ctrl cls" title="关闭"></button>
+            </div>
+        </div>
+        <div class="wnd-cnt">
+            <h2>智能窗口系统</h2>
+            <p>这是一个可拖动、可调整大小、可最小化和最大化的智能窗口系统。</p>
+            <ul>
+                <li>拖动标题栏移动窗口</li>
+                <li>拖动边缘调整窗口大小</li>
+                <li>双击标题栏最大化/恢复窗口</li>
+                <li>点击最小化按钮将窗口缩小到标题栏</li>
+                <li>点击最大化按钮切换窗口大小</li>
+                <li>点击关闭按钮关闭窗口</li>
+                <li>使用键盘快捷键操作窗口</li>
+                <li>使用鼠标右键打开上下文菜单</li>
+                <li>使用触控手势操作窗口</li>
+            </ul>
+        </div>
+        <div class="rsz n"></div>
+        <div class="rsz s"></div>
+        <div class="rsz e"></div>
+        <div class="rsz w"></div>
+        <div class="rsz ne"></div>
+        <div class="rsz nw"></div>
+        <div class="rsz se"></div>
+        <div class="rsz sw"></div>
+    </div>
+    <script type="module" src="/src/script.mjs"></script>
+</body>
+</html>

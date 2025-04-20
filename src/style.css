@@ -1,0 +1,310 @@
+*{
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+image{
+    -webkit-user-drag: none;
+}
+
+:root {
+    --min-width: 280px;
+    --max-width: 90vw;
+    --min-height: 180px;
+    --control-size: 16px;
+    --resizer-size: 16px;
+}
+h1{
+    margin: 0;
+    font-size:100px
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0.7ex;
+    height: 0.7ex;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(200,200,200,0.6);
+    border-radius: 32px;
+}
+
+.wnd {
+    position: fixed;
+    background: rgba(30,30,30,0.95);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    color: #fff;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    min-height: var(--min-height);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    z-index: 1;
+    overflow: hidden;
+    transition: none !important;
+}
+
+.wnd-hdr {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: move;
+    user-select: none;
+}
+
+.wnd-hdr img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.wnd-ctrls {
+    display: flex;
+    gap: 10px;
+}
+
+.wnd-ctrl {
+    width: var(--control-size);
+    height: var(--control-size);
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.wnd-ctrl:hover {
+    transform: scale(1.15);
+}
+
+.min { background: #ffbd2e; }
+.max { background: #27c93f; }
+.cls { background: #ff5f56; }
+
+.wnd-cnt {
+    padding: 16px;
+    height: calc(100% - 52px);
+    overflow: auto;
+}
+
+.rsz {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Resizer Directions */
+.n, .s { width: 100%; height: 8px; left: 0; cursor: ns-resize; }
+.n { top: -4px; }
+.s { bottom: -4px; }
+.e, .w { height: 100%; width: 8px; top: 0; cursor: ew-resize; }
+.e { right: -4px; }
+.w { left: -4px; }
+.ne, .nw, .se, .sw { width: 8px; height: 8px; cursor: nwse-resize; }
+.ne { top: -4px; right: -4px; }
+.nw { top: -4px; left: -4px; }
+.se { bottom: -4px; right: -4px; }
+.sw { bottom: -4px; left: -4px; }
+
+/* Maximized State */
+.maximized {
+    width: 100vw !important;
+    height: 100vh !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 0 !important;
+    border: none;
+}
+
+/* Minimized State */
+.minimized .wnd-cnt {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.minimized {
+    height: 52px !important;
+    border-radius: 0 0 12px 12px;
+    transition: all 0.25s;
+}
+
+/* Light Theme */
+body.light {
+    background: #f5f5f5 !important;
+    color: #222;
+}
+
+body.light .wnd {
+    background: rgba(255,255,255,0.95);
+    color: #222;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+body.light .wnd-hdr {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+body.light .wnd-ctrl.min { background: #ffe066; }
+body.light .wnd-ctrl.max { background: #51e36e; }
+body.light .wnd-ctrl.cls { background: #ff8787; }
+body.light .wnd-cnt { color: #222; }
+
+/* Snap Styles */
+.snap-top { top:0!important; left:0!important; width:100vw!important; height:50vh!important; border-radius:0!important; }
+.snap-bottom { left:0!important; width:100vw!important; height:50vh!important; top:auto!important; bottom:0!important; border-radius:0!important; }
+.snap-left { left:0!important; top:0!important; width:50vw!important; height:100vh!important; border-radius:0!important; }
+.snap-right { left:auto!important; right:0!important; top:0!important; width:50vw!important; height:100vh!important; border-radius:0!important; }
+.snap-topleft { left:0!important; top:0!important; width:50vw!important; height:50vh!important; border-radius:0!important; }
+.snap-topright { right:0!important; top:0!important; width:50vw!important; height:50vh!important; left:auto!important; border-radius:0!important; }
+.snap-bottomleft { left:0!important; bottom:0!important; width:50vw!important; height:50vh!important; top:auto!important; border-radius:0!important; }
+.snap-bottomright { right:0!important; bottom:0!important; width:50vw!important; height:50vh!important; left:auto!important; top:auto!important; border-radius:0!important; }
+
+/* 预览框动画 */
+.preview-box {
+    border: 2px dashed #4af;
+    background: rgba(64,128,255,0.08);
+    pointer-events: none;
+    transition: width 0.18s, height 0.18s;
+}
+
+#add-window-btn {
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 6px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#add-window-btn:hover {
+    background: #f0f0f0;
+}
+
+#window-list-bar {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(30,30,30,0.85);
+    border-radius: 8px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+#window-list-bar button {
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 6px 18px;
+    font-size: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#window-list-bar button:hover {
+    background: #f0f0f0;
+}
+
+body.light #window-list-bar {
+    background: rgba(255,255,255,0.95);
+}
+body.light #window-list-bar button {
+    background: #f5f5f5;
+    color: #222;
+    border: 1px solid #bbb;
+}
+body.light #window-list-bar button:hover {
+    background: #e0e0e0;
+}
+
+/* 任务栏时钟样式 */
+#os-taskbar {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2000;
+    background: rgba(30,30,30,0.85);
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px 16px;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    user-select: none;
+    gap: 6px !important;
+}
+#os-taskbar-bar {
+    font-size: 12px !important;
+    height: 44px !important;
+    line-height: 44px !important;
+}
+#os-taskbar span {
+    font-size: 12px !important;
+    margin: 0 2px;
+    padding: 0;
+}
+body.light #os-taskbar {
+    background: rgba(255,255,255,0.95);
+    color: #222;
+}
+
+/* 任务栏icon动画A字 */
+.ahou-animated-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #fff;
+    background: linear-gradient(120deg,#fff,#eee);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    user-select: none;
+    transition: background 0.8s;
+    animation: ahouiconmove 3s linear infinite alternate;
+}
+@keyframes ahouiconmove {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* 任务栏按钮样式 */
+.taskbar-btn {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 4px 10px 4px 6px;
+    font-size: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s;
+    gap: 6px;
+    position: relative;
+}
+.taskbar-btn .taskbar-name {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.2s, max-width 0.2s;
+    margin-left: 2px;
+}
+.taskbar-btn:hover .taskbar-name {
+    opacity: 1;
+    max-width: 120px;
+}
