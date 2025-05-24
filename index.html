@@ -1,53 +1,110 @@
 <!DOCTYPE html>
-<html lang="zh-Hans-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ahou">
-    <meta name="author" content="Yangko Studio">
-    <meta name="keywords" content="Ahou">
-    <title>Ahou</title>
-    <link rel="stylesheet" type="text/css" href="/src/style.css">
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" >
-</head>
-<body>
-    <h1>Ahou 28 Preview</h1>
-    <h1>Copyright © 2018-2025 Yangko Studio. All rights reserved.</h1>
-    <button id="theme-toggle" style="position:fixed;top:10px;right:10px;z-index:999;">切换主题</button>
-    <div class="wnd" style="left: 50px; top: 50px; width: 400px; height: 300px">
-        <div class="wnd-hdr">
-            <img src="/src/favicon.svg" alt="窗口图标">
-            <span>示例窗口</span>
-            <div class="wnd-ctrls">
-                <button class="wnd-ctrl min" title="最小化"></button>
-                <button class="wnd-ctrl max" title="最大化"></button>
-                <button class="wnd-ctrl cls" title="关闭"></button>
+<html lang="zh-Hans-cn" color-scheme="dark">
+    <head>
+        <!--
+                ___    __                   __  __    
+               /   |  / /_  ____  __  __   / / / /  __
+              / /| | / __ \/ __ \/ / / /  / /_/ / |/_/
+             / ___ |/ / / / /_/ / /_/ /  / __  />  <  
+            /_/  |_/_/ /_/\____/\__,_/  /_/ /_/_/|_|  
+        -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ahou</title>
+        <meta name="description" content="ahou">
+        <meta name="keywords" content="ahou">
+        <meta name="author" content="yangko">
+        <meta name="license" href="/LICENSE">
+        <link rel="preload" type="text/css" href="/src/styles/style.css" as="style">
+        <link rel="modulepreload" type="module" href="./src/scripts/script.mjs" as="script">
+        <link rel="stylesheet" type="text/css" href="./src/styles/style.css">
+        <link rel="icon" type="image/svg+xml" href="/src/assets/images/icon.svg">
+    </head>
+    <body>
+        <ahou>
+            <header>
+                <div style="display:flex;align-items:center;gap:1em;">
+                    <ahou-icon/>
+                </div>
+                <div id="header-time" style="min-width:6em;text-align:right;"></div>
+            </header>
+
+            <main>
+            <button id="create-process-btn" style="position:fixed;top:60px;left:16px;z-index:300;">新建进程窗口</button>
+
+
+
+                <app data-app="{name:'example'}">
+                    <app-head>
+                        <img src="/src/assets/images/icon.svg" alt>
+                        <span>Example</span>
+                        <control>
+                            <min></min>
+                            <max></max>
+                            <exit></exit>
+                        </control>
+                    </app-head>
+                    <app-body>
+                        <img src="/src/assets/images/pzx.png" alt>
+                        <p>朴正熙大统领</p>
+                    </app-body>
+                </app>
+
+
+            </main>
+            <div id="taskbar" style="position:fixed;left:0;right:0;bottom:0;height:40px;background:rgba(30,34,50,0.92);z-index:10000;display:flex;align-items:center;gap:8px;padding:0 16px;box-shadow:0 -2px 8px #0004;">
+                <!-- 窗口列表由js动态填充 -->
             </div>
-        </div>
-        <div class="wnd-cnt">
-            <h2>智能窗口系统</h2>
-            <p>这是一个可拖动、可调整大小、可最小化和最大化的智能窗口系统。</p>
-            <ul>
-                <li>拖动标题栏移动窗口</li>
-                <li>拖动边缘调整窗口大小</li>
-                <li>双击标题栏最大化/恢复窗口</li>
-                <li>点击最小化按钮将窗口缩小到标题栏</li>
-                <li>点击最大化按钮切换窗口大小</li>
-                <li>点击关闭按钮关闭窗口</li>
-                <li>使用键盘快捷键操作窗口</li>
-                <li>使用鼠标右键打开上下文菜单</li>
-                <li>使用触控手势操作窗口</li>
-            </ul>
-        </div>
-        <div class="rsz n"></div>
-        <div class="rsz s"></div>
-        <div class="rsz e"></div>
-        <div class="rsz w"></div>
-        <div class="rsz ne"></div>
-        <div class="rsz nw"></div>
-        <div class="rsz se"></div>
-        <div class="rsz sw"></div>
-    </div>
-    <script type="module" src="/src/script.mjs"></script>
-</body>
+            <footer></footer>
+        </ahou>
+        <audio id="bg-music" src="./src/assets/audios/M5000011gNMw3KpHdx.mp3" autoplay loop preload="auto" style="position:fixed;left:-9999px;" volume="0.3"></audio>
+        <script type="module" src="/src/scripts/script.mjs"></script>
+        <script type="text/javascript" src="/src/scripts/window.js"></script>
+        <script type="text/javascript" src="/src/scripts/task.js"></script>
+        <script type="text/javascript" src="/src/scripts/init.js"></script>
+        <script type="text/javascript" src="/src/scripts/storage.js"></script>
+        <script type="text/javascript" src="/src/scripts/resize.js"></script>
+        <script>
+        // 自动播放兼容处理
+        window.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById('bg-music');
+          if (audio) {
+            audio.volume = 0.3;
+            // 兼容浏览器自动播放策略
+            var play = () => { audio.play().catch(()=>{}); };
+            document.body.addEventListener('click', play, { once: true });
+            document.body.addEventListener('keydown', play, { once: true });
+          }
+        });
+
+        // 简单任务栏窗口列表渲染
+        function renderTaskbar() {
+            const bar = document.getElementById('taskbar');
+            if (!bar) return;
+            const apps = Array.from(document.querySelectorAll('app'));
+            bar.innerHTML = '';
+            apps.forEach((app, i) => {
+                const title = app.querySelector('app-head span')?.textContent || '窗口'+(i+1);
+                const icon = app.querySelector('app-head img')?.getAttribute('src') || '/src/assets/images/icon.svg';
+                const btn = document.createElement('button');
+                btn.innerHTML = `<img src="${icon}"><span>${title}</span>`;
+                btn.title = title;
+                btn.style.marginRight = '8px';
+                btn.onclick = () => {
+                    if (window.WindowApp && app.WindowAppInstance) app.WindowAppInstance.bringToFront();
+                    app.style.display = '';
+                    app.focus();
+                };
+                bar.appendChild(btn);
+            });
+        }
+        window.renderTaskbar = renderTaskbar;
+        // 监听app变化自动刷新任务栏
+        const main = document.querySelector('main');
+        if (main && window.MutationObserver) {
+            new MutationObserver(renderTaskbar).observe(main, { childList: true, subtree: true });
+        }
+        document.addEventListener('DOMContentLoaded', renderTaskbar);
+        </script>
+    </body>
 </html>
