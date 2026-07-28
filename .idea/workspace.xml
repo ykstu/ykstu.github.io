@@ -4,49 +4,110 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8364155-0261-45ce-b134-9803aacbb982" name="更改" comment="" />
+    <list default="true" id="1c0ad304-cee5-46a4-9fe9-b5352c8c4367" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ykstu.github.io.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Boot/Boot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Boot/Boot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Private/BasicCSS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Private/BasicFrame.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Private/BasicJS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Scripts/CCS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Scripts/FUCKER.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Scripts/UXT.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Scripts/fs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ahou System/System/Services/Init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old/src/scripts/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Old/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Ahou Hx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Old/.idea/Ahou Hx.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/ahouE.html" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/apps/ahouE.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/example.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/apps/example.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/resource.html" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/apps/resource.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/audios/M5000011gNMw3KpHdx.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/assets/audios/M5000011gNMw3KpHdx.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/assets/images/icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/pzx.png" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/assets/images/pzx.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/【哲风壁纸】二次元-二次元星空.png" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/assets/images/【哲风壁纸】二次元-二次元星空.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/const.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/configs/const.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/appControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/appControl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/dock.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/dock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/resize.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/resize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/script.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/script.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/storage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/window.js" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/scripts/window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Old/src/styles/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2xBafGoTHHQmE4y6Y0LmMWrbTHy" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ykstu"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ykstu/ykstu.github.io.git",
+    "accountId": "9cd50624-a4af-44b6-b19d-6fd25c6924e1"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3H6uftFcehqpUVYgkc0WN0e4omN" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Yang/Desktop/Ahou Hx",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.8665.341" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="a8364155-0261-45ce-b134-9803aacbb982" name="更改" comment="" />
-      <created>1747414022873</created>
+      <changelist id="1c0ad304-cee5-46a4-9fe9-b5352c8c4367" name="更改" comment="" />
+      <created>1785200951535</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747414022873</updated>
-      <workItem from="1747414026154" duration="131000" />
-      <workItem from="1747446108493" duration="1207000" />
+      <updated>1785200951535</updated>
+      <workItem from="1785200967095" duration="1283000" />
     </task>
     <servers />
   </component>

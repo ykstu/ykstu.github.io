@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引导管理器</title>
+    <style>
+        * {
+            user-select: none;
+            font-family: monospace;
+            font-size: large;
+        }
+        body{
+            background-color: #222222;
+        }
+        fieldset{
+            color: #ffffff;
+        }
+    </style>
+    <script type="module" defer>
+        async function rf(path) {
+            const segments = path.split('/').filter(s => s);
+            const fileName = segments.pop();
+            let dir = await navigator.storage.getDirectory();
+            for (const seg of segments) dir = await dir.getDirectoryHandle(seg.toString());
+            const fileHandle = await dir.getFileHandle(fileName.toString());
+            return await fileHandle.getFile();
+        }
+
+        async function Boot(location) {
+            const file = await rf(location);
+            const content = await file.text();
+            document.querySelector('#BootContent').innerText = content;
+            const blob = new Blob([content], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = url;
+            document.head.appendChild(script);
+            script.onload = () => URL.revokeObjectURL(url);
+        }
+
+        const file = await rf('/System/Boot/install.boot');
+        document.querySelector('#BootContent').innerText = await file.text();
+        if (new URLSearchParams(window.location.search).get('auto') !== 'false') {
+            await Boot('/System/Boot/install.boot');
+        }else{
+            document.body.style.display ='block';
+        }
+
+        document.querySelector('#BootBtn').onclick = () => Boot('/System/Boot/install.boot');
+        document.querySelector('#EvalBtn').onclick = () => eval(document.querySelector('#EvalText').value);
+    </script>
+</head>
+
+<body style="display: none;">
+<fieldset>
+    <legend>引导管理器</legend>
+    <textarea id="BootContent" readonly style="width:100%;height:500px;resize: vertical;"></textarea>
+    <button id="BootBtn">启动系统</button>
+    <input id="EvalText" type="text" style="width:500px;">
+    <button id="EvalBtn">执行脚本</button>
+</fieldset>
+
+
+</body>
+
+</html>
