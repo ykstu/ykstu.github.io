@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>37中 · 205宿舍</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 10%, #1a1a1e 0%, #0a0a0c 100%);
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, 0.92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20vh;
+            left: -10vw;
+            width: 70vw;
+            height: 70vh;
+            background: rgba(100, 120, 200, 0.08);
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -15vh;
+            right: -10vw;
+            width: 80vw;
+            height: 80vh;
+            background: rgba(180, 120, 200, 0.06);
+            border-radius: 50%;
+            filter: blur(140px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 主容器 — 直角黑色毛玻璃 */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.9),
+                        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            padding: 2.5rem 2.8rem 3rem;
+        }
+
+        @media (max-width: 650px) {
+            .glass-card {
+                padding: 1.8rem 1.2rem 2rem;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+
+        /* 头部 */
+        .dorm-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1.5rem;
+        }
+
+        .dorm-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #b0b8d0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .dorm-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(200, 210, 230, 0.7);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+        }
+
+        /* 图片轮播区域 */
+        .carousel-section {
+            margin-bottom: 2.5rem;
+            background: rgba(10, 10, 15, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 图片下方文字说明 */
+        .carousel-caption {
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            min-height: 3.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .caption-text {
+            font-size: 0.95rem;
+            color: rgba(230, 238, 255, 0.9);
+            letter-spacing: 0.02em;
+            flex: 1;
+            transition: opacity 0.3s;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .indicator {
+            width: 28px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            padding: 0;
+        }
+
+        .indicator.active {
+            background: rgba(200, 215, 255, 0.8);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 倒计时 */
+        .countdown-section {
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 30px -10px black;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-weight: 500;
+            color: rgba(180, 190, 220, 0.8);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .countdown-label::before {
+            content: '⏳';
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
+        }
+
+        .countdown-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            gap: 1rem 1.2rem;
+        }
+
+        .time-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 75px;
+        }
+
+        .time-value {
+            font-size: 3.2rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.03em;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #fff, #c0c8e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(200, 220, 255, 0.3);
+            transition: all 0.1s ease;
+        }
+
+        .time-unit {
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(180, 190, 220, 0.6);
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 650px) {
+            .time-value {
+                font-size: 2.1rem;
+            }
+            .time-block {
+                min-width: 55px;
+            }
+            .time-unit {
+                font-size: 0.55rem;
+                letter-spacing: 0.1em;
+            }
+            .countdown-grid {
+                gap: 0.6rem 0.8rem;
+            }
+        }
+
+        /* 信息展示区 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: rgba(20, 20, 28, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 0;
+            padding: 1.4rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            background: rgba(28, 28, 38, 0.6);
+        }
+
+        .info-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            color: rgba(160, 170, 200, 0.7);
+            margin-bottom: 0.9rem;
+            border-left: 2px solid rgba(200, 210, 255, 0.3);
+            padding-left: 0.7rem;
+        }
+
+        .info-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: rgba(240, 245, 255, 0.9);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: baseline;
+            line-height: 1.6;
+        }
+
+        .info-item .label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(170, 185, 220, 0.7);
+            letter-spacing: 0.05em;
+            min-width: 3.8rem;
+        }
+
+        .info-item .value {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.02em;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-item.room-leader .value {
+            color: #f5e6c4;
+            text-shadow: 0 0 10px rgba(255, 220, 120, 0.25);
+        }
+
+        .member-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 0.7rem;
+            margin-top: 0.1rem;
+        }
+
+        .member-tag {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.15rem 0.5rem;
+            border-left: 1px solid rgba(200, 210, 255, 0.2);
+            font-size: 0.95rem;
+            color: rgba(230, 240, 255, 0.9);
+        }
+
+        .notice-text {
+            font-size: 0.9rem;
+            color: rgba(220, 230, 250, 0.85);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(140, 150, 180, 0.4);
+            font-weight: 400;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 1.3rem;
+        }
+
+        .footer-note span {
+            color: rgba(210, 220, 250, 0.5);
+            font-weight: 600;
+            letter-spacing: 0.4em;
+        }
+
+        @keyframes subtlePulse {
+            0% { opacity: 1; text-shadow: 0 0 15px rgba(200, 220, 255, 0.3); }
+            50% { opacity: 0.9; text-shadow: 0 0 25px rgba(200, 220, 255, 0.6); }
+            100% { opacity: 1; text-shadow: 0 0 15px rgba(200, 220, 255, 0.3); }
+        }
+
+        #seconds {
+            animation: subtlePulse 1s infinite ease-in-out;
+        }
+
+        @media (max-width: 700px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .info-card {
+                min-height: 100px;
+                padding: 1.1rem;
+            }
+            .dorm-title {
+                font-size: 1.9rem;
+            }
+            .carousel-caption {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        @media (min-width: 701px) and (max-width: 900px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .info-card:last-child {
+                grid-column: span 2;
+            }
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;
+            border-radius: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div class="dorm-header">
+            <h1 class="dorm-title">37中 · 205宿舍</h1>
+            <div class="dorm-subtitle">No.37 Middle School · Dorm 205</div>
+        </div>
+
+        <!-- 图片轮播 -->
+        <div class="carousel-section">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide active" data-index="0">
+                    <img src="https://picsum.photos/id/1015/1000/563" alt="山间湖泊">
+                </div>
+                <div class="carousel-slide" data-index="1">
+                    <img src="https://picsum.photos/id/1018/1000/563" alt="自然风景">
+                </div>
+                <div class="carousel-slide" data-index="2">
+                    <img src="https://picsum.photos/id/1044/1000/563" alt="静谧森林">
+                </div>
+            </div>
+            <div class="carousel-caption">
+                <span class="caption-text" id="captionText">山间湖泊</span>
+                <div class="carousel-indicators" id="indicators">
+                    <button class="indicator active" data-target="0" aria-label="第1张"></button>
+                    <button class="indicator" data-target="1" aria-label="第2张"></button>
+                    <button class="indicator" data-target="2" aria-label="第3张"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 倒计时 -->
+        <div class="countdown-section">
+            <div class="countdown-label">2027 高考倒计时</div>
+            <div class="countdown-grid">
+                <div class="time-block">
+                    <span class="time-value" id="days">000</span>
+                    <span class="time-unit">天</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-value" id="hours">00</span>
+                    <span class="time-unit">时</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-unit">分</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-unit">秒</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 信息展示区 -->
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-title">宿舍成员</div>
+                <div class="info-content">
+                    <div class="info-item room-leader">
+                        <span class="label">室长</span>
+                        <span class="value">张MD</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">成员</span>
+                        <span class="value member-list">
+                            <span class="member-tag">Z</span>
+                            <span class="member-tag">Y</span>
+                            <span class="member-tag">Z</span>
+                            <span class="member-tag">G</span>
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">班级</span>
+                        <span class="value">高三(2)班</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">资料</div>
+                <div class="info-content">
+                    <div class="info-item">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">公告栏</div>
+                <div class="info-content">
+                    <div class="info-item">
+                        <span class="label">通知</span>
+                        <span class="value notice-text">ZA&WJY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ========== 图片轮播 ==========
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const captionText = document.getElementById('captionText');
+            const captions = [
+                '山间湖泊 · 心向远方',
+                '绿意盎然 · 静待花开',
+                '林间光影 · 笃志前行'
+            ];
+            let currentIndex = 0;
+            let autoTimer = null;
+            const INTERVAL = 4000;
+
+            function goToSlide(index) {
+                // 边界处理
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                currentIndex = index;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('active', i === index);
+                });
+                captionText.style.opacity = '0';
+                setTimeout(() => {
+                    captionText.textContent = captions[index] || '';
+                    captionText.style.opacity = '1';
+                }, 150);
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function startAuto() {
+                if (autoTimer) clearInterval(autoTimer);
+                autoTimer = setInterval(nextSlide, INTERVAL);
+            }
+
+            function resetAuto() {
+                clearInterval(autoTimer);
+                startAuto();
+            }
+
+            // 指示器点击
+            indicators.forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetAuto();
+                });
+            });
+
+            // 启动自动轮播
+            startAuto();
+
+            // 鼠标悬停暂停
+            const carouselTrack = document.getElementById('carouselTrack');
+            carouselTrack.addEventListener('mouseenter', () => clearInterval(autoTimer));
+            carouselTrack.addEventListener('mouseleave', () => startAuto());
+
+            // ========== 高考倒计时 ==========
+            const targetDate = new Date('2027-06-07T09:00:00+08:00');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            function padNumber(num, length) {
+                return String(num).padStart(length, '0');
+            }
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    daysEl.textContent = '000';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const totalSeconds = Math.floor(diff / 1000);
+                const seconds = totalSeconds % 60;
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const minutes = totalMinutes % 60;
+                const totalHours = Math.floor(totalMinutes / 60);
+                const hours = totalHours % 24;
+                const days = Math.floor(totalHours / 24);
+
+                daysEl.textContent = padNumber(days, 3);
+                hoursEl.textContent = padNumber(hours, 2);
+                minutesEl.textContent = padNumber(minutes, 2);
+                secondsEl.textContent = padNumber(seconds, 2);
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) updateCountdown();
+            });
+            window.addEventListener('load', updateCountdown);
+        })();
+    </script>
+</body>
+</html>
