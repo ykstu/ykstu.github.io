@@ -1,658 +1,920 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>37中 · 205宿舍</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>二〇五宿舍 · 密码门禁</title>
+<style>
+@layer reset, base, components, animate;
 
-        body {
-            min-height: 100vh;
-            background: radial-gradient(circle at 30% 10%, #1a1a1e 0%, #0a0a0c 100%);
-            font-family: 'Inter', sans-serif;
-            color: rgba(255, 255, 255, 0.92);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-            line-height: 1.5;
-            position: relative;
-            overflow-x: hidden;
-        }
+@layer reset {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+    user-select: none;
+    font-size: 17px;
+  }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: -20vh;
-            left: -10vw;
-            width: 70vw;
-            height: 70vh;
-            background: rgba(100, 120, 200, 0.08);
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-        }
+  html, body {
+    height: 100%;
+  }
 
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -15vh;
-            right: -10vw;
-            width: 80vw;
-            height: 80vh;
-            background: rgba(180, 120, 200, 0.06);
-            border-radius: 50%;
-            filter: blur(140px);
-            pointer-events: none;
-            z-index: 0;
-        }
+  body::-webkit-scrollbar{
+    display: none;
+  }
+  img{
+    -webkit-user-drag: none;
+  }
 
-        /* 主容器 — 直角黑色毛玻璃 */
-        .glass-card {
-            position: relative;
-            z-index: 10;
-            max-width: 1000px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.9),
-                        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-            padding: 2.5rem 2.8rem 3rem;
-        }
+  li{
+    list-style: none;
+  }
 
-        @media (max-width: 650px) {
-            .glass-card {
-                padding: 1.8rem 1.2rem 2rem;
-            }
-            body {
-                padding: 1rem;
-            }
-        }
+  table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table th,
+table td {
+  border: 1px solid #666;
+  padding: 4px 6px;
+}
 
-        /* 头部 */
-        .dorm-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 1.5rem;
-        }
+  iframe{
+    border: 0;
+    width: 100%;
+    height: 500px;
+  }
 
-        .dorm-title {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            background: linear-gradient(135deg, #ffffff 0%, #b0b8d0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
+  /* 自定义滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #111;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #444;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #58a6ff;
+  }
+}
 
-        .dorm-subtitle {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: rgba(200, 210, 230, 0.7);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-top: 0.4rem;
-        }
+@layer base {
+  :root {
+    --bg: #000000;
+    --panel: #11111177;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --border: #444444;
+    --accent: #58a6ff;
+  }
 
-        /* 图片轮播区域 */
-        .carousel-section {
-            margin-bottom: 2.5rem;
-            background: rgba(10, 10, 15, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-        }
+  body {
+    font-family: monospace;
+    color: var(--text);
+    background-color: var(--bg);
+  }
 
-        .carousel-track {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background: #111;
-        }
+  .bg-wrap {
+    position: fixed;
+    inset: 0;
+    background: url("https://api.bimg.cc/random") center / cover no-repeat;
+    z-index: -2;
+  }
 
-        .carousel-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.7s ease-in-out;
-            z-index: 1;
-        }
+  .dark-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+  }
+}
 
-        .carousel-slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
+@layer animate {
+  .nav-icon {
+    background: linear-gradient(90deg, #58a6ff, #79c0ff, #58a6ff);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 4s linear infinite;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+}
 
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+@layer components {
+  .navbar {
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
 
-        /* 图片下方文字说明 */
-        .carousel-caption {
-            padding: 1rem 1.5rem;
-            background: rgba(0, 0, 0, 0.35);
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            min-height: 3.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
+  .nav-icon {
+    flex: 1;
+    font-weight: bold;
+  }
 
-        .caption-text {
-            font-size: 0.95rem;
-            color: rgba(230, 238, 255, 0.9);
-            letter-spacing: 0.02em;
-            flex: 1;
-            transition: opacity 0.3s;
-        }
+  .nav-menu{
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .nav-menu > div {
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0.3rem 0.6rem;
+    position: relative;
+  }
+  .nav-menu > div::after {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    right: 0.6rem;
+    bottom: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+  .nav-menu > div.active::after {
+    transform: scaleX(1);
+  }
+  .nav-menu > div:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(88, 166, 255, 0.45);
+  }
 
-        .carousel-indicators {
-            display: flex;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
+  .nav-cont{
+    flex: 1;
+    text-align: right;
+  }
 
-        .indicator {
-            width: 28px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-            padding: 0;
-        }
+  .page-wrap {
+    width: 100%;
+    padding-top: 80px;
+    min-height: 100vh;
+  }
 
-        .indicator.active {
-            background: rgba(200, 215, 255, 0.8);
-        }
+  .page {
+    display: none;
+    padding: 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
 
-        .indicator:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
+  .page.show {
+    display: block;
+  }
 
-        /* 倒计时 */
-        .countdown-section {
-            background: rgba(10, 10, 15, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1.8rem 2rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 10px 30px -10px black;
-        }
+  .page h2 {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+  }
 
-        .countdown-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-weight: 500;
-            color: rgba(180, 190, 220, 0.8);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+  .page p {
+    color: var(--muted);
+    line-height: 1.6;
+  }
 
-        .countdown-label::before {
-            content: '⏳';
-            font-size: 1.1rem;
-            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
-        }
+  /* 主页卡片 */
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .home-grid.small {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 
-        .countdown-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: baseline;
-            gap: 1rem 1.2rem;
-        }
+  .home-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .home-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .home-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .home-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
 
-        .time-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 75px;
-        }
+  .time-box, .countdown-box, .progress-box, .member-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .time-box strong, .countdown-box strong {
+    color: var(--accent);
+  }
+  .progress-box .bar-wrap {
+    width: 100%;
+    height: 14px;
+    background: #222;
+    overflow: hidden;
+    margin: 0.6rem 0;
+  }
+  .progress-box .bar {
+    height: 100%;
+    background: var(--accent);
+  }
+  .member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap:0.8rem;
+    margin-top:0.8rem;
+  }
+  .member-card {
+    border:1px solid var(--border);
+    padding:0.8rem;
+    text-align:center;
+    background:rgba(88,166,255,0.05);
+  }
 
-        .time-value {
-            font-size: 3.2rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            letter-spacing: 0.03em;
-            line-height: 1.1;
-            background: linear-gradient(to bottom, #fff, #c0c8e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(200, 220, 255, 0.3);
-            transition: all 0.1s ease;
-        }
+  /* about 卡片组 */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+    gap:1rem;
+    margin-top:1rem;
+  }
+  .about-card {
+    background: var(--panel);
+    border:1px solid var(--border);
+    padding:1.2rem;
+  }
+  .about-card h3 {
+    color:#79c0ff;
+    margin-bottom:0.8rem;
+    padding-bottom:0.4rem;
+    border-bottom:1px solid #333;
+  }
+  .about-card li {
+    line-height:1.8;
+    color:var(--muted);
+  }
 
-        .time-unit {
-            font-size: 0.65rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(180, 190, 220, 0.6);
-            margin-top: 0.25rem;
-        }
+  /* 新闻 / 工具 共用左右布局 */
+  .mode-bar {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .mode-bar button {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  .mode-bar button.active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 
-        @media (max-width: 650px) {
-            .time-value {
-                font-size: 2.1rem;
-            }
-            .time-block {
-                min-width: 55px;
-            }
-            .time-unit {
-                font-size: 0.55rem;
-                letter-spacing: 0.1em;
-            }
-            .countdown-grid {
-                gap: 0.6rem 0.8rem;
-            }
-        }
+  .split-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1rem;
+    height: calc(100vh - 180px);
+  }
+  .split-list {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    overflow-y: auto;
+  }
+  .split-item {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .split-item:hover {
+    background: rgba(88,166,255,0.12);
+  }
+  .split-item.selected {
+    background: rgba(88,166,255,0.22);
+    border-left: 3px solid var(--accent);
+  }
+  .split-preview {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .empty-tip {
+    color: var(--muted);
+    padding: 1rem;
+  }
 
-        /* 信息展示区 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .info-card {
-            background: rgba(20, 20, 28, 0.45);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 0;
-            padding: 1.4rem 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: transform 0.2s, border-color 0.2s, background 0.2s;
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .info-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            background: rgba(28, 28, 38, 0.6);
-        }
-
-        .info-title {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 600;
-            color: rgba(160, 170, 200, 0.7);
-            margin-bottom: 0.9rem;
-            border-left: 2px solid rgba(200, 210, 255, 0.3);
-            padding-left: 0.7rem;
-        }
-
-        .info-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            color: rgba(240, 245, 255, 0.9);
-        }
-
-        .info-item {
-            display: flex;
-            align-items: baseline;
-            line-height: 1.6;
-        }
-
-        .info-item .label {
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: rgba(170, 185, 220, 0.7);
-            letter-spacing: 0.05em;
-            min-width: 3.8rem;
-        }
-
-        .info-item .value {
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.95);
-            letter-spacing: 0.02em;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        .info-item.room-leader .value {
-            color: #f5e6c4;
-            text-shadow: 0 0 10px rgba(255, 220, 120, 0.25);
-        }
-
-        .member-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.25rem 0.7rem;
-            margin-top: 0.1rem;
-        }
-
-        .member-tag {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 0.15rem 0.5rem;
-            border-left: 1px solid rgba(200, 210, 255, 0.2);
-            font-size: 0.95rem;
-            color: rgba(230, 240, 255, 0.9);
-        }
-
-        .notice-text {
-            font-size: 0.9rem;
-            color: rgba(220, 230, 250, 0.85);
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        .footer-note {
-            margin-top: 2.5rem;
-            text-align: center;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: rgba(140, 150, 180, 0.4);
-            font-weight: 400;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            padding-top: 1.3rem;
-        }
-
-        .footer-note span {
-            color: rgba(210, 220, 250, 0.5);
-            font-weight: 600;
-            letter-spacing: 0.4em;
-        }
-
-        @keyframes subtlePulse {
-            0% { opacity: 1; text-shadow: 0 0 15px rgba(200, 220, 255, 0.3); }
-            50% { opacity: 0.9; text-shadow: 0 0 25px rgba(200, 220, 255, 0.6); }
-            100% { opacity: 1; text-shadow: 0 0 15px rgba(200, 220, 255, 0.3); }
-        }
-
-        #seconds {
-            animation: subtlePulse 1s infinite ease-in-out;
-        }
-
-        @media (max-width: 700px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .info-card {
-                min-height: 100px;
-                padding: 1.1rem;
-            }
-            .dorm-title {
-                font-size: 1.9rem;
-            }
-            .carousel-caption {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0.8rem 1rem;
-            }
-        }
-
-        @media (min-width: 701px) and (max-width: 900px) {
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .info-card:last-child {
-                grid-column: span 2;
-            }
-        }
-
-        .glass-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 40px 40px;
-            border-radius: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-    </style>
+  /* ===== 密码遮罩 / 空白拦截 ===== */
+  .password-gate {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .password-gate .gate-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.15);
+  }
+  .gate-card .gate-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 3px;
+  }
+  .gate-card input {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 4px;
+    outline: none;
+    width: 260px;
+  }
+  .gate-card input:focus {
+    border-color: var(--accent);
+  }
+  .gate-card button {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0.6rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    width: 100%;
+  }
+  .gate-card button:hover {
+    opacity: 0.85;
+  }
+  .gate-hint {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .gate-error {
+    color: #f85149;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+  }
+  .gate-blank-msg {
+    color: #8b949e;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.8;
+  }
+  body.dom-blank .page-wrap,
+  body.dom-blank .navbar,
+  body.dom-blank .bg-wrap,
+  body.dom-blank .dark-mask {
+    display: none !important;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="glass-card">
-        <div class="dorm-header">
-            <h1 class="dorm-title">37中 · 205宿舍</h1>
-            <div class="dorm-subtitle">No.37 Middle School · Dorm 205</div>
+  <!-- 背景层（密码门禁期间也可见，但被遮罩覆盖） -->
+  <div class="bg-wrap"></div>
+  <div class="dark-mask"></div>
+
+  <!-- 密码门禁层 —— 默认显示，DOM空白时显示提示 -->
+  <div class="password-gate" id="passwordGate">
+    <div class="gate-card" id="gateCard">
+      <div class="gate-title">二〇五宿舍</div>
+      <div class="gate-hint">请输入访问密码</div>
+      <input type="password" id="gateInput" placeholder="• • • • • •" autocomplete="off" />
+      <div class="gate-error" id="gateError"></div>
+      <button id="gateBtn">进 入</button>
+    </div>
+    <div class="gate-blank-msg" id="gateBlankMsg" style="display:none;">
+      ⛔ 访问已被记录<br>页面内容不可见
+    </div>
+  </div>
+
+  <!-- 主站点内容（默认隐藏，密码正确后显示） -->
+  <nav class="navbar" id="mainNav" style="display:none;">
+    <div class="nav-icon">二〇五宿舍官网</div>
+    <div class="nav-menu">
+        <div data-page="home" class="active">首页</div>
+        <div data-page="news">新闻</div>
+        <div data-page="tools">工具</div>
+        <div data-page="about">关于</div>
+    </div>
+    <div class="nav-cont">
+    </div>
+  </nav>
+
+  <div class="page-wrap" id="mainWrap" style="display:none;">
+    <div class="page show" data-page="home">
+      <h2>首页</h2>
+      <p>欢迎来到二〇五宿舍官网，这里是宿舍内部站点入口</p>
+      <p>班级相关内容请使用网盘中“ccms”</p>
+      <p>点击导航栏或者下方按钮可以跳转到对应页面</p>
+      <p>『版本』0.0.2 | 『版权』© Yangko Studio 2026</p>
+
+      <div class="time-box">
+        <div>当前时间</div>
+        <div id="clock"><strong>加载时间…</strong></div>
+      </div>
+
+      <div class="countdown-box">
+        <div>距离 2027 高考</div>
+        <div id="gaokao-count"><strong>计算中…</strong></div>
+      </div>
+
+      <div class="progress-box">
+        <div>高中进度（2024-09-01 → 2027-06-07）</div>
+        <div class="bar-wrap"><div class="bar" id="prog-bar"></div></div>
+        <div id="prog-text"><strong>0.00000000%</strong></div>
+      </div>
+
+      <div class="member-box">
+        <div>宿舍成员</div>
+        <div class="member-list">
+          <div class="member-card">ZMD（室长）</div>
+          <div class="member-card">ZA</div>
+          <div class="member-card">YZH</div>
+          <div class="member-card">GY</div>
+          <div class="member-card">LJC（原室长、现走读）</div>
+          <div class="member-card">ZZX（原室长、现走读）</div>
+          <div class="member-card">XH（现走读）</div>
+          <div class="member-card">LR（现走读）</div>
+          <div class="member-card">MJX（原室长、现走读）</div>
+          <div class="member-card">LJH（原室长、现一班）</div>
+          <div class="member-card">WRX（现走读）</div>
+          <div class="member-card">HJK（现走读）</div>
         </div>
+      </div>
 
-        <!-- 图片轮播 -->
-        <div class="carousel-section">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide active" data-index="0">
-                    <img src="https://picsum.photos/id/1015/1000/563" alt="山间湖泊">
-                </div>
-                <div class="carousel-slide" data-index="1">
-                    <img src="https://picsum.photos/id/1018/1000/563" alt="自然风景">
-                </div>
-                <div class="carousel-slide" data-index="2">
-                    <img src="https://picsum.photos/id/1044/1000/563" alt="静谧森林">
-                </div>
-            </div>
-            <div class="carousel-caption">
-                <span class="caption-text" id="captionText">山间湖泊</span>
-                <div class="carousel-indicators" id="indicators">
-                    <button class="indicator active" data-target="0" aria-label="第1张"></button>
-                    <button class="indicator" data-target="1" aria-label="第2张"></button>
-                    <button class="indicator" data-target="2" aria-label="第3张"></button>
-                </div>
-            </div>
+      <div class="home-grid">
+        <div class="home-card" data-page="news">
+          <h3>新闻</h3>
+          <p>News|ニュース</p>
         </div>
-
-        <!-- 倒计时 -->
-        <div class="countdown-section">
-            <div class="countdown-label">2027 高考倒计时</div>
-            <div class="countdown-grid">
-                <div class="time-block">
-                    <span class="time-value" id="days">000</span>
-                    <span class="time-unit">天</span>
-                </div>
-                <div class="time-block">
-                    <span class="time-value" id="hours">00</span>
-                    <span class="time-unit">时</span>
-                </div>
-                <div class="time-block">
-                    <span class="time-value" id="minutes">00</span>
-                    <span class="time-unit">分</span>
-                </div>
-                <div class="time-block">
-                    <span class="time-value" id="seconds">00</span>
-                    <span class="time-unit">秒</span>
-                </div>
-            </div>
+        <div class="home-card" data-page="tools">
+          <h3>工具</h3>
+          <p>Tool|工具</p>
         </div>
-
-        <!-- 信息展示区 -->
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-title">宿舍成员</div>
-                <div class="info-content">
-                    <div class="info-item room-leader">
-                        <span class="label">室长</span>
-                        <span class="value">张MD</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">成员</span>
-                        <span class="value member-list">
-                            <span class="member-tag">Z</span>
-                            <span class="member-tag">Y</span>
-                            <span class="member-tag">Z</span>
-                            <span class="member-tag">G</span>
-                        </span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">班级</span>
-                        <span class="value">高三(2)班</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <div class="info-title">资料</div>
-                <div class="info-content">
-                    <div class="info-item">
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <div class="info-title">公告栏</div>
-                <div class="info-content">
-                    <div class="info-item">
-                        <span class="label">通知</span>
-                        <span class="value notice-text">ZA&WJY</span>
-                    </div>
-                </div>
-            </div>
+        <div class="home-card" data-page="about">
+          <h3>关于</h3>
+          <p>About|について</p>
         </div>
+      </div>
+      <div class="home-grid small">
+        <div class="home-card" onclick="window.open('https://www.gov.cn','_blank')">
+          <h3>中国政府网</h3>
+          <p>https://www.gov.cn</p>
+        </div>
+        <div class="home-card" onclick="window.open('https://bilibili.com','_blank')">
+          <h3>Bilibili</h3>
+          <p>https://bilibili.com</p>
+        </div>
+        <div class="home-card" onclick="window.open('https://github.com','_blank')">
+          <h3>GitHub</h3>
+          <p>https://github.com</p>
+        </div>
+      </div>
     </div>
 
-    <script>
-        (function() {
-            // ========== 图片轮播 ==========
-            const slides = document.querySelectorAll('.carousel-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const captionText = document.getElementById('captionText');
-            const captions = [
-                '山间湖泊 · 心向远方',
-                '绿意盎然 · 静待花开',
-                '林间光影 · 笃志前行'
-            ];
-            let currentIndex = 0;
-            let autoTimer = null;
-            const INTERVAL = 4000;
+    <div class="page" data-page="news">
+      <h2>新闻</h2>
+      <div class="mode-bar">
+        <button id="modeLocal" class="active">o</button>
+        <button id="modeX">x</button>
+      </div>
+      <div class="split-container">
+        <div class="split-list" id="newsList"></div>
+        <div class="split-preview" id="newsPreview">
+          <div class="empty-tip">请在左侧选择一篇文章</div>
+        </div>
+      </div>
+    </div>
 
-            function goToSlide(index) {
-                // 边界处理
-                if (index < 0) index = slides.length - 1;
-                if (index >= slides.length) index = 0;
-                currentIndex = index;
+    <div class="page" data-page="tools">
+      <h2>工具</h2>
+      <div class="split-container">
+        <div class="split-list" id="toolList"></div>
+        <div class="split-preview" id="toolPreview">
+          <div class="empty-tip">请在左侧选择工具文档</div>
+        </div>
+      </div>
+    </div>
 
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
-                });
-                indicators.forEach((ind, i) => {
-                    ind.classList.toggle('active', i === index);
-                });
-                captionText.style.opacity = '0';
-                setTimeout(() => {
-                    captionText.textContent = captions[index] || '';
-                    captionText.style.opacity = '1';
-                }, 150);
-            }
+    <div class="page" data-page="about">
+      <h2>关于</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>项目信息</h3>
+          <ul>
+            <li>项目：205 Dorm Site</li>
+            <li>开发：Yangko Studio (Ahou Software)</li>
+            <li>归属：37中205 宿舍</li>
+            <li>版本：v0.0.2</li>
+            <li>部署：GitHub Pages</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3>技术栈</h3>
+          <ul>
+            <li>基础：HTML,CSS,JavaScript</li>
+            <li>周期：Ahou XXIX Kernel</li>
+            <li>设计：Ahou KUI Framework</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:1rem;padding:1rem;background:var(--panel);border:1px solid var(--border);color:#aaa;">
+        © Yangko Studio 2026 版权所有 | 联系我们 admin@ahousoftware.onmicrosoft.com
+      </div>
+    </div>
+  </div>
 
-            function nextSlide() {
-                goToSlide(currentIndex + 1);
-            }
+<script type="module">
+// ============================================================
+// 密码门禁控制逻辑
+// 规则：
+// 1. 进入时要求输入密码 205207
+// 2. 密码正确 → 显示主内容，隐藏密码遮罩（但刷新/重新进入仍需输入）
+// 3. 密码错误 → 写入 localStorage，访问 DOM 时全部空白（显示拦截提示）
+// ============================================================
 
-            function startAuto() {
-                if (autoTimer) clearInterval(autoTimer);
-                autoTimer = setInterval(nextSlide, INTERVAL);
-            }
+const GATE_PASSWORD = '205207';
+const STORAGE_KEY = 'dorm205_denied';
 
-            function resetAuto() {
-                clearInterval(autoTimer);
-                startAuto();
-            }
+// 检查是否已被标记为“访问拒绝”
+function isDenied() {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
 
-            // 指示器点击
-            indicators.forEach((ind, i) => {
-                ind.addEventListener('click', () => {
-                    goToSlide(i);
-                    resetAuto();
-                });
-            });
+// 标记为“访问拒绝”
+function markDenied() {
+  try {
+    localStorage.setItem(STORAGE_KEY, '1');
+  } catch {}
+}
 
-            // 启动自动轮播
-            startAuto();
+// 清除标记（正常进入时不应清除——需求：一旦输错写入localStorage，一旦访问DOM空白）
+// 注：需求说“一旦输错写入localstorage,一旦访问dom空白”，意思是只要输错过一次，
+// 之后访问DOM都空白。所以不提供清除机制。但为了在正确密码时能正常进入（本次会话），
+// 我们仍然允许在密码正确时显示内容（不删除localStorage标记，但本次显示）。
+// 但是注意：如果已存在标记，刷新时应当空白。所以正确进入后再次刷新会因标记而空白。
+// 这与需求“密码正确进入重新进入仍要输入”略有冲突——需求原文：
+// “修改为进入时要求输入密码（205207）密码正确进入重新进入仍要输入，一旦输错写入localstorage,一旦访问dom空白”
+// 理解为：
+// - 每次进入（页面加载）都要求输入密码。
+// - 密码正确 → 进入。
+// - 密码错误 → 写入localStorage，并且一旦访问DOM就空白（即被标记后，下次进入直接空白）。
+// 因此：正确进入后，本次会话显示内容。但localStorage中若已有拒绝标记，则本次直接空白。
+// 如果本次正确输入，是否清除标记？需求没说要清除。但为了可用性，如果已经标记过，
+// 用户再次正确输入密码，应允许进入并可以清除标记（否则永远无法访问）。
+// 但需求说“一旦输错写入localstorage,一旦访问dom空白”，意味着错误后永远空白？
+// 从安全角度，应该是错误后锁定。但如果是永久锁定，正确密码也无法访问了？
+// 更合理：输错后标记，下次加载直接空白（不显示密码框）。用户需要手动清除localStorage才能恢复。
+// 但这样可能太严格。根据需求原文，我们实现：
+// - 如果 localStorage 有标记 → 页面加载时直接空白（DOM不显示），只显示拦截信息。
+// - 如果无标记 → 显示密码框。
+// - 输入正确密码 → 显示内容，但不删除标记（因为没输错，标记不存在）。
+// - 输入错误密码 → 写入标记，并立即让DOM空白（本次也空白？还是下次？）
+// 需求说“一旦访问dom空白”——可能指下次访问。但为了直观，我们让输错后本次也变为空白。
+// 同时密码框消失，显示“访问已被记录，页面内容不可见”。
+// 这样用户刷新后依然空白（因标记存在）。
+// 如果用户想恢复，需要手动清除localStorage['dorm205_denied']。这在UI上不提供。
+// 这样符合需求。
 
-            // 鼠标悬停暂停
-            const carouselTrack = document.getElementById('carouselTrack');
-            carouselTrack.addEventListener('mouseenter', () => clearInterval(autoTimer));
-            carouselTrack.addEventListener('mouseleave', () => startAuto());
+(function() {
+  const gate = document.getElementById('passwordGate');
+  const gateCard = document.getElementById('gateCard');
+  const gateBlankMsg = document.getElementById('gateBlankMsg');
+  const gateInput = document.getElementById('gateInput');
+  const gateBtn = document.getElementById('gateBtn');
+  const gateError = document.getElementById('gateError');
+  const mainNav = document.getElementById('mainNav');
+  const mainWrap = document.getElementById('mainWrap');
+  const body = document.body;
 
-            // ========== 高考倒计时 ==========
-            const targetDate = new Date('2027-06-07T09:00:00+08:00');
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
+  // 初始状态：全部隐藏
+  gate.style.display = 'flex';
+  gateCard.style.display = 'flex';
+  gateBlankMsg.style.display = 'none';
+  mainNav.style.display = 'none';
+  mainWrap.style.display = 'none';
+  body.classList.remove('dom-blank');
 
-            function padNumber(num, length) {
-                return String(num).padStart(length, '0');
-            }
+  // 检查是否已被拒绝
+  if (isDenied()) {
+    // 直接显示空白拦截
+    gateCard.style.display = 'none';
+    gateBlankMsg.style.display = 'block';
+    body.classList.add('dom-blank');
+    // 不需要再显示其他任何东西
+    return;
+  }
 
-            function updateCountdown() {
-                const now = new Date();
-                const diff = targetDate - now;
+  // 无拒绝标记，显示密码输入
+  gateCard.style.display = 'flex';
+  gateBlankMsg.style.display = 'none';
+  gateInput.value = '';
+  gateError.textContent = '';
+  setTimeout(() => gateInput.focus(), 100);
 
-                if (diff <= 0) {
-                    daysEl.textContent = '000';
-                    hoursEl.textContent = '00';
-                    minutesEl.textContent = '00';
-                    secondsEl.textContent = '00';
-                    return;
-                }
+  // 尝试进入
+  function attemptEnter() {
+    const val = gateInput.value.trim();
+    if (val === GATE_PASSWORD) {
+      // 密码正确：显示主内容，隐藏门禁
+      gate.style.display = 'none';
+      mainNav.style.display = 'flex';
+      mainWrap.style.display = 'block';
+      body.classList.remove('dom-blank');
+      // 注意：不清除 localStorage 标记（因为正确密码不产生标记）
+      // 但是如果之前有标记，上面已经在 isDenied() 分支拦截了，不会走到这里。
+      // 本次会话可以正常使用。
+    } else {
+      // 密码错误：写入 localStorage，并立即让 DOM 空白
+      markDenied();
+      // 隐藏密码卡片，显示空白提示
+      gateCard.style.display = 'none';
+      gateBlankMsg.style.display = 'block';
+      // 确保主内容不可见
+      mainNav.style.display = 'none';
+      mainWrap.style.display = 'none';
+      body.classList.add('dom-blank');
+      // 可选：让整个门禁保持可见，但只有空白提示
+      gate.style.display = 'flex';
+      // 额外：清空可能已经渲染的内容
+      gateError.textContent = '';
+    }
+  }
 
-                const totalSeconds = Math.floor(diff / 1000);
-                const seconds = totalSeconds % 60;
-                const totalMinutes = Math.floor(totalSeconds / 60);
-                const minutes = totalMinutes % 60;
-                const totalHours = Math.floor(totalMinutes / 60);
-                const hours = totalHours % 24;
-                const days = Math.floor(totalHours / 24);
+  gateBtn.addEventListener('click', attemptEnter);
+  gateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      attemptEnter();
+    }
+  });
 
-                daysEl.textContent = padNumber(days, 3);
-                hoursEl.textContent = padNumber(hours, 2);
-                minutesEl.textContent = padNumber(minutes, 2);
-                secondsEl.textContent = padNumber(seconds, 2);
-            }
+  // 如果已存在拒绝标记，监听器也不需要了（但页面已空白，不会交互）
+})();
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden) updateCountdown();
-            });
-            window.addEventListener('load', updateCountdown);
-        })();
-    </script>
+// ========== 以下为原有站点逻辑，仅在密码正确后执行 ==========
+// 为了避免在门禁未通过时执行任何逻辑，用条件包裹
+// 检测主内容是否显示（即密码通过）
+// 因为门禁逻辑是同步的，但脚本顺序执行。如果被拒绝，mainWrap 是隐藏的。
+// 用 setTimeout 确保先执行门禁判断，再决定是否初始化站点。
+setTimeout(() => {
+  const mainWrap = document.getElementById('mainWrap');
+  if (!mainWrap || mainWrap.style.display === 'none') {
+    // 未通过门禁或已被拒绝，不执行任何站点逻辑
+    return;
+  }
+
+  // ===== 原有逻辑（保持不变） =====
+  const menuItems = document.querySelectorAll(".nav-menu [data-page]");
+  const pages = document.querySelectorAll(".page");
+  const homeCards = document.querySelectorAll(".home-card");
+
+  const newsListEl = document.getElementById("newsList");
+  const newsPreviewEl = document.getElementById("newsPreview");
+  const btnLocal = document.getElementById("modeLocal");
+  const btnX = document.getElementById("modeX");
+
+  const toolListEl = document.getElementById("toolList");
+  const toolPreviewEl = document.getElementById("toolPreview");
+
+  let newsMode = "o";
+  let newsArticles = [];
+  let newsSelected = null;
+
+  let toolArticles = [];
+  let toolSelected = null;
+
+  const weekText = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+  const startHigh = new Date("2024-09-01T00:00:00");
+  const endGaokao = new Date("2027-06-07T09:00:00");
+  const totalSpan = endGaokao - startHigh;
+
+  function pad(n, len=2){
+    return String(n).padStart(len, "0");
+  }
+
+  function renderTime() {
+    const now = new Date();
+    const ms = now.getMilliseconds();
+    const us = Math.floor(performance.now() * 1000) % 1000;
+    const usStr = pad(us,3);
+    const y = now.getFullYear();
+    const m = pad(now.getMonth()+1);
+    const d = pad(now.getDate());
+    const w = weekText[now.getDay()];
+    const h = pad(now.getHours());
+    const mi = pad(now.getMinutes());
+    const s = pad(now.getSeconds());
+    const clockEl = document.getElementById("clock");
+    if (clockEl) clockEl.innerHTML = `<strong>${y} 年 ${m} 月 ${d} 日 ${w} ${h}:${mi}:${s}.${pad(ms,3)} ${usStr}</strong>`;
+
+    // 高考倒计时
+    const diff = endGaokao - now;
+    const gaokaoEl = document.getElementById("gaokao-count");
+    if (gaokaoEl) {
+      if (diff <= 0) {
+        gaokaoEl.innerHTML = "<strong>高考已开始</strong>";
+      } else {
+        const days = Math.floor(diff / 86400000);
+        const rem = diff % 86400000;
+        const hh = Math.floor(rem / 3600000);
+        const mm = Math.floor((rem % 3600000)/60000);
+        const ss = Math.floor((rem % 60000)/1000);
+        gaokaoEl.innerHTML = `<strong>${days} 天 ${pad(hh)}:${pad(mm)}:${pad(ss)}.${pad(ms,3)} ${usStr}</strong>`;
+      }
+    }
+
+    // 进度
+    const elapsed = now - startHigh;
+    let pct = elapsed / totalSpan * 100;
+    if(pct>100) pct=100;
+    const pctFixed = pct.toFixed(8);
+    const progBar = document.getElementById("prog-bar");
+    const progText = document.getElementById("prog-text");
+    if (progBar) progBar.style.width = pct + "%";
+    if (progText) progText.innerHTML = `<strong>${pctFixed}%</strong>`;
+  }
+  renderTime();
+  setInterval(renderTime, 40);
+
+  // ========== 页面切换 + 本地存储记忆 ==========
+  function switchPage(name) {
+    pages.forEach(p => p.classList.remove("show"));
+    const targetPage = document.querySelector(`.page[data-page="${name}"]`);
+    targetPage?.classList.add("show");
+    menuItems.forEach(m => m.classList.toggle("active", m.dataset.page === name));
+    localStorage.setItem("lastPage", name);
+
+    if (name === "news") reloadNews();
+    if (name === "tools") reloadTools();
+  }
+
+  // 打开自动恢复上次页面
+  const savedPage = localStorage.getItem("lastPage") || "home";
+  switchPage(savedPage);
+
+  menuItems.forEach(item => {
+    item.onclick = () => switchPage(item.dataset.page);
+  });
+  homeCards.forEach(card => {
+    const p = card.dataset.page;
+    if(p) card.onclick = () => switchPage(p);
+  });
+
+  // ========== 新闻 o/x ==========
+  if (btnLocal) {
+    btnLocal.onclick = () => {
+      newsMode = "o";
+      btnLocal.classList.add("active");
+      btnX.classList.remove("active");
+      reloadNews();
+    };
+  }
+  if (btnX) {
+    btnX.onclick = () => {
+      newsMode = "x";
+      btnX.classList.add("active");
+      btnLocal.classList.remove("active");
+    };
+  }
+
+  function renderNewsList() {
+    newsListEl.innerHTML = "";
+    newsArticles.forEach((art, idx) => {
+      const div = document.createElement("div");
+      div.className = "split-item" + (newsSelected === idx ? " selected" : "");
+      div.textContent = art.name;
+      div.onclick = () => selectNews(idx);
+      newsListEl.appendChild(div);
+    });
+  }
+  function selectNews(idx) {
+    newsSelected = idx;
+    renderNewsList();
+    newsPreviewEl.innerHTML = newsArticles[idx].html;
+  }
+
+  async function loadNewsO() {
+    newsArticles = [];
+    newsSelected = null;
+    newsPreviewEl.innerHTML = `<div class="empty-tip">加载中…</div>`;
+    let x = 0;
+    while(true) {
+      const url = `./o/${x}.htm`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) break;
+        const html = await res.text();
+        newsArticles.push({name:`${x}.htm`, url, html});
+        x++;
+      } catch { break; }
+    }
+    renderNewsList();
+  }
+  async function loadNewsX() {
+    newsArticles = [];
+    newsSelected = null;
+    newsPreviewEl.innerHTML = ``;
+    renderNewsList();
+  }
+  function reloadNews() {
+    if(newsMode === "o") loadNewsO();
+    else loadNewsX();
+  }
+
+  // ========== 工具页 ./v/ 加载 ==========
+  function renderToolList() {
+    toolListEl.innerHTML = "";
+    toolArticles.forEach((art, idx) => {
+      const div = document.createElement("div");
+      div.className = "split-item" + (toolSelected === idx ? " selected" : "");
+      div.textContent = art.name;
+      div.onclick = () => selectTool(idx);
+      toolListEl.appendChild(div);
+    });
+  }
+  function selectTool(idx) {
+    toolSelected = idx;
+    renderToolList();
+    toolPreviewEl.innerHTML = toolArticles[idx].html;
+  }
+  async function loadTools() {
+    toolArticles = [];
+    toolSelected = null;
+    toolPreviewEl.innerHTML = `<div class="empty-tip">加载中…</div>`;
+    let x = 1;
+    while(true) {
+      const url = `./v/${x}.htm`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) break;
+        const html = await res.text();
+        toolArticles.push({name:`${x}.htm`, url, html});
+        x++;
+      } catch { break; }
+    }
+    renderToolList();
+  }
+  function reloadTools() {
+    loadTools();
+  }
+}, 50); // 短暂延迟确保门禁逻辑先执行
+
+</script>
 </body>
 </html>

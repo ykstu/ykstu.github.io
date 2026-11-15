@@ -1,0 +1,74 @@
+<h1>二〇五宿舍周刊 · 样稿</h1>
+<p>发布时间：2026-11-15 | 作者：Yangko</p>
+<hr>
+
+<h2>段落与基础文字样式</h2>
+<p>这是普通正文段落。<b>粗体文字</b>，<i>斜体文字</i>，<u>下划线</u>，<s>删除线</s>。</p>
+<p><strong>强调加粗</strong> 和 <em>着重斜体</em>；<mark>高亮标记文本</mark>。</p>
+<p>上标：E=mc<sup>2</sup>；下标：H<sub>2</sub>O。</p>
+
+<h2>引用</h2>
+<blockquote>
+    这是引用块，适合摘抄语录、公告。
+</blockquote>
+
+<h2>列表</h2>
+<p>无序列表：</p>
+<ul>
+    <li>第一项内容</li>
+    <li>第二项内容</li>
+    <li>嵌套
+        <ul>
+            <li>子条目 A</li>
+            <li>子条目 B</li>
+        </ul>
+    </li>
+</ul>
+
+<p>有序列表：</p>
+<ol>
+    <li>步骤一：准备文件</li>
+    <li>步骤二：写入内容</li>
+    <li>步骤三：放到 o 目录</li>
+</ol>
+
+<h2>代码</h2>
+<p>行内代码：<code>fetch("./o/1.htm")</code></p>
+<pre>
+// 示例代码
+async function load() {
+    const res = await fetch("./o/1.htm");
+    return await res.text();
+}
+</pre>
+
+<h2>表格</h2>
+<table border="1" cellpadding="6" style="border-color:#444; border-collapse:collapse;">
+    <tr>
+        <th>名称</th>
+        <th>版本</th>
+        <th>备注</th>
+    </tr>
+    <tr>
+        <td>宿舍官网</td>
+        <td>0.0.2</td>
+        <td>支持新闻分页加载</td>
+    </tr>
+    <tr>
+        <td>新闻模块</td>
+        <td>dev</td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>链接与图片</h2>
+<p>内部链接：<a href="#">示例链接</a></p>
+<p>图片：<br>
+    <img src="https://ys.mihoyo.com" alt="随机背景" style="max-width:320px;">
+</p>
+
+<h2>分割线与换行</h2>
+<p>文字第一行<br>
+    换行后的第二行</p>
+<hr>
+<p>文末。</p>
