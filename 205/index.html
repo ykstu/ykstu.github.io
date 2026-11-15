@@ -575,19 +575,10 @@ table td {
     </div>
   </div>
 
-<script type="module">
-// ============================================================
-// 密码门禁控制逻辑
-// 规则：
-// 1. 进入时要求输入密码 205207
-// 2. 密码正确 → 显示主内容，隐藏密码遮罩（但刷新/重新进入仍需输入）
-// 3. 密码错误 → 写入 localStorage，访问 DOM 时全部空白（显示拦截提示）
-// ============================================================
-
+<script>
 const GATE_PASSWORD = '205207';
 const STORAGE_KEY = 'dorm205_denied';
 
-// 检查是否已被标记为“访问拒绝”
 function isDenied() {
   try {
     return localStorage.getItem(STORAGE_KEY) === '1';
@@ -595,131 +586,14 @@ function isDenied() {
     return false;
   }
 }
-
-// 标记为“访问拒绝”
 function markDenied() {
   try {
     localStorage.setItem(STORAGE_KEY, '1');
   } catch {}
 }
 
-// 清除标记（正常进入时不应清除——需求：一旦输错写入localStorage，一旦访问DOM空白）
-// 注：需求说“一旦输错写入localstorage,一旦访问dom空白”，意思是只要输错过一次，
-// 之后访问DOM都空白。所以不提供清除机制。但为了在正确密码时能正常进入（本次会话），
-// 我们仍然允许在密码正确时显示内容（不删除localStorage标记，但本次显示）。
-// 但是注意：如果已存在标记，刷新时应当空白。所以正确进入后再次刷新会因标记而空白。
-// 这与需求“密码正确进入重新进入仍要输入”略有冲突——需求原文：
-// “修改为进入时要求输入密码（205207）密码正确进入重新进入仍要输入，一旦输错写入localstorage,一旦访问dom空白”
-// 理解为：
-// - 每次进入（页面加载）都要求输入密码。
-// - 密码正确 → 进入。
-// - 密码错误 → 写入localStorage，并且一旦访问DOM就空白（即被标记后，下次进入直接空白）。
-// 因此：正确进入后，本次会话显示内容。但localStorage中若已有拒绝标记，则本次直接空白。
-// 如果本次正确输入，是否清除标记？需求没说要清除。但为了可用性，如果已经标记过，
-// 用户再次正确输入密码，应允许进入并可以清除标记（否则永远无法访问）。
-// 但需求说“一旦输错写入localstorage,一旦访问dom空白”，意味着错误后永远空白？
-// 从安全角度，应该是错误后锁定。但如果是永久锁定，正确密码也无法访问了？
-// 更合理：输错后标记，下次加载直接空白（不显示密码框）。用户需要手动清除localStorage才能恢复。
-// 但这样可能太严格。根据需求原文，我们实现：
-// - 如果 localStorage 有标记 → 页面加载时直接空白（DOM不显示），只显示拦截信息。
-// - 如果无标记 → 显示密码框。
-// - 输入正确密码 → 显示内容，但不删除标记（因为没输错，标记不存在）。
-// - 输入错误密码 → 写入标记，并立即让DOM空白（本次也空白？还是下次？）
-// 需求说“一旦访问dom空白”——可能指下次访问。但为了直观，我们让输错后本次也变为空白。
-// 同时密码框消失，显示“访问已被记录，页面内容不可见”。
-// 这样用户刷新后依然空白（因标记存在）。
-// 如果用户想恢复，需要手动清除localStorage['dorm205_denied']。这在UI上不提供。
-// 这样符合需求。
-
-(function() {
-  const gate = document.getElementById('passwordGate');
-  const gateCard = document.getElementById('gateCard');
-  const gateBlankMsg = document.getElementById('gateBlankMsg');
-  const gateInput = document.getElementById('gateInput');
-  const gateBtn = document.getElementById('gateBtn');
-  const gateError = document.getElementById('gateError');
-  const mainNav = document.getElementById('mainNav');
-  const mainWrap = document.getElementById('mainWrap');
-  const body = document.body;
-
-  // 初始状态：全部隐藏
-  gate.style.display = 'flex';
-  gateCard.style.display = 'flex';
-  gateBlankMsg.style.display = 'none';
-  mainNav.style.display = 'none';
-  mainWrap.style.display = 'none';
-  body.classList.remove('dom-blank');
-
-  // 检查是否已被拒绝
-  if (isDenied()) {
-    // 直接显示空白拦截
-    gateCard.style.display = 'none';
-    gateBlankMsg.style.display = 'block';
-    body.classList.add('dom-blank');
-    // 不需要再显示其他任何东西
-    return;
-  }
-
-  // 无拒绝标记，显示密码输入
-  gateCard.style.display = 'flex';
-  gateBlankMsg.style.display = 'none';
-  gateInput.value = '';
-  gateError.textContent = '';
-  setTimeout(() => gateInput.focus(), 100);
-
-  // 尝试进入
-  function attemptEnter() {
-    const val = gateInput.value.trim();
-    if (val === GATE_PASSWORD) {
-      // 密码正确：显示主内容，隐藏门禁
-      gate.style.display = 'none';
-      mainNav.style.display = 'flex';
-      mainWrap.style.display = 'block';
-      body.classList.remove('dom-blank');
-      // 注意：不清除 localStorage 标记（因为正确密码不产生标记）
-      // 但是如果之前有标记，上面已经在 isDenied() 分支拦截了，不会走到这里。
-      // 本次会话可以正常使用。
-    } else {
-      // 密码错误：写入 localStorage，并立即让 DOM 空白
-      markDenied();
-      // 隐藏密码卡片，显示空白提示
-      gateCard.style.display = 'none';
-      gateBlankMsg.style.display = 'block';
-      // 确保主内容不可见
-      mainNav.style.display = 'none';
-      mainWrap.style.display = 'none';
-      body.classList.add('dom-blank');
-      // 可选：让整个门禁保持可见，但只有空白提示
-      gate.style.display = 'flex';
-      // 额外：清空可能已经渲染的内容
-      gateError.textContent = '';
-    }
-  }
-
-  gateBtn.addEventListener('click', attemptEnter);
-  gateInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      attemptEnter();
-    }
-  });
-
-  // 如果已存在拒绝标记，监听器也不需要了（但页面已空白，不会交互）
-})();
-
-// ========== 以下为原有站点逻辑，仅在密码正确后执行 ==========
-// 为了避免在门禁未通过时执行任何逻辑，用条件包裹
-// 检测主内容是否显示（即密码通过）
-// 因为门禁逻辑是同步的，但脚本顺序执行。如果被拒绝，mainWrap 是隐藏的。
-// 用 setTimeout 确保先执行门禁判断，再决定是否初始化站点。
-setTimeout(() => {
-  const mainWrap = document.getElementById('mainWrap');
-  if (!mainWrap || mainWrap.style.display === 'none') {
-    // 未通过门禁或已被拒绝，不执行任何站点逻辑
-    return;
-  }
-
-  // ===== 原有逻辑（保持不变） =====
+// ========== 站点初始化函数，只有解锁成功才执行 ==========
+function initSite() {
   const menuItems = document.querySelectorAll(".nav-menu [data-page]");
   const pages = document.querySelectorAll(".page");
   const homeCards = document.querySelectorAll(".home-card");
@@ -763,7 +637,6 @@ setTimeout(() => {
     const clockEl = document.getElementById("clock");
     if (clockEl) clockEl.innerHTML = `<strong>${y} 年 ${m} 月 ${d} 日 ${w} ${h}:${mi}:${s}.${pad(ms,3)} ${usStr}</strong>`;
 
-    // 高考倒计时
     const diff = endGaokao - now;
     const gaokaoEl = document.getElementById("gaokao-count");
     if (gaokaoEl) {
@@ -779,7 +652,6 @@ setTimeout(() => {
       }
     }
 
-    // 进度
     const elapsed = now - startHigh;
     let pct = elapsed / totalSpan * 100;
     if(pct>100) pct=100;
@@ -792,19 +664,16 @@ setTimeout(() => {
   renderTime();
   setInterval(renderTime, 40);
 
-  // ========== 页面切换 + 本地存储记忆 ==========
   function switchPage(name) {
     pages.forEach(p => p.classList.remove("show"));
     const targetPage = document.querySelector(`.page[data-page="${name}"]`);
     targetPage?.classList.add("show");
     menuItems.forEach(m => m.classList.toggle("active", m.dataset.page === name));
     localStorage.setItem("lastPage", name);
-
     if (name === "news") reloadNews();
     if (name === "tools") reloadTools();
   }
 
-  // 打开自动恢复上次页面
   const savedPage = localStorage.getItem("lastPage") || "home";
   switchPage(savedPage);
 
@@ -816,7 +685,6 @@ setTimeout(() => {
     if(p) card.onclick = () => switchPage(p);
   });
 
-  // ========== 新闻 o/x ==========
   if (btnLocal) {
     btnLocal.onclick = () => {
       newsMode = "o";
@@ -877,7 +745,6 @@ setTimeout(() => {
     else loadNewsX();
   }
 
-  // ========== 工具页 ./v/ 加载 ==========
   function renderToolList() {
     toolListEl.innerHTML = "";
     toolArticles.forEach((art, idx) => {
@@ -913,8 +780,69 @@ setTimeout(() => {
   function reloadTools() {
     loadTools();
   }
-}, 50); // 短暂延迟确保门禁逻辑先执行
+}
 
+// ========== 门禁主控逻辑 ==========
+(function() {
+  const gate = document.getElementById('passwordGate');
+  const gateCard = document.getElementById('gateCard');
+  const gateBlankMsg = document.getElementById('gateBlankMsg');
+  const gateInput = document.getElementById('gateInput');
+  const gateBtn = document.getElementById('gateBtn');
+  const gateError = document.getElementById('gateError');
+  const mainNav = document.getElementById('mainNav');
+  const mainWrap = document.getElementById('mainWrap');
+  const body = document.body;
+
+  gate.style.display = 'flex';
+  gateCard.style.display = 'flex';
+  gateBlankMsg.style.display = 'none';
+  mainNav.style.display = 'none';
+  mainWrap.style.display = 'none';
+  body.classList.remove('dom-blank');
+
+  if (isDenied()) {
+    gateCard.style.display = 'none';
+    gateBlankMsg.style.display = 'block';
+    body.classList.add('dom-blank');
+    return;
+  }
+
+  gateCard.style.display = 'flex';
+  gateBlankMsg.style.display = 'none';
+  gateInput.value = '';
+  gateError.textContent = '';
+  setTimeout(() => gateInput.focus(), 100);
+
+  function attemptEnter() {
+    const val = gateInput.value.trim();
+    if (val === GATE_PASSWORD) {
+      gate.style.display = 'none';
+      mainNav.style.display = 'flex';
+      mainWrap.style.display = 'block';
+      body.classList.remove('dom-blank');
+      // ✅ 解锁成功，才启动全站 JS
+      initSite();
+    } else {
+      markDenied();
+      gateCard.style.display = 'none';
+      gateBlankMsg.style.display = 'block';
+      mainNav.style.display = 'none';
+      mainWrap.style.display = 'none';
+      body.classList.add('dom-blank');
+      gate.style.display = 'flex';
+      gateError.textContent = '';
+    }
+  }
+
+  gateBtn.addEventListener('click', attemptEnter);
+  gateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      attemptEnter();
+    }
+  });
+})();
 </script>
 </body>
 </html>
